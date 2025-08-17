@@ -6,6 +6,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: '카르다노 dApp - Basic',
   description: '카르다노 블록체인 기반 탈중앙화 애플리케이션',
+  icons: {
+    icon: '/cardano-logo.svg',
+    shortcut: '/cardano-logo.svg',
+    apple: '/cardano-logo.svg',
+  },
 };
 
 export default function RootLayout({

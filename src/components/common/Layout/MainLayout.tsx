@@ -114,15 +114,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
             />
 
             <Title level={4} style={{ margin: 0 }}>
-              카르다노 dApp
+              Cardano dApp Basic - 1
             </Title>
-          </Space>
-
-          <Space>
-            {/* 지갑 연결 상태 표시 영역 */}
-            <Button type='primary' icon={<WalletOutlined />} size='large'>
-              지갑 연결
-            </Button>
           </Space>
         </Header>
 

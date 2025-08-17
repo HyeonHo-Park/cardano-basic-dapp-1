@@ -28,10 +28,10 @@ export default function HomePage() {
         {/* 환영 섹션 */}
         <Card style={{ marginBottom: '24px', textAlign: 'center' }}>
           <Title level={2} style={{ marginBottom: '16px' }}>
-            카르다노 dApp에 오신 것을 환영합니다! 🚀
+            Cardano dApp에 오신 것을 환영합니다! 🚀
           </Title>
           <Paragraph style={{ fontSize: '16px' }}>
-            Blockfrost API와 Lucid를 활용한 카르다노 블록체인 기반 탈중앙화
+            Blockfrost API와 Lucid를 활용한 Cardano 블록체인 기반 탈중앙화
             애플리케이션입니다.
             <br />
             지갑을 연결하고 ADA 송금, 거래 내역 조회 등의 기능을 체험해보세요.
