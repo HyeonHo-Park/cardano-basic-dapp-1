@@ -7,6 +7,7 @@ import { MainLayout } from '../components/common';
 import { WalletConnect } from '../components/wallet/WalletConnect';
 import { WalletInfo } from '../components/wallet/WalletInfo';
 import { useWallet } from '../hooks/useWallet';
+import { formatAddressForAPI } from '../utils/cardano';
 
 const { Title } = Typography;
 
@@ -69,14 +70,26 @@ export default function WalletPage() {
     });
   };
 
-  const handleCopyAddress = () => {
+  const handleCopyAddress = async () => {
     if (address) {
-      navigator.clipboard.writeText(address);
-      notification.success({
-        message: '주소 복사 완료',
-        description: '주소가 클립보드에 복사되었습니다',
-        placement: 'topRight',
-      });
+      try {
+        // 변환된 주소를 복사
+        const formattedAddress = await formatAddressForAPI(address);
+        navigator.clipboard.writeText(formattedAddress);
+        notification.success({
+          message: '주소 복사 완료',
+          description: '변환된 주소가 클립보드에 복사되었습니다',
+          placement: 'topRight',
+        });
+      } catch {
+        // 변환 실패 시 원본 주소 복사
+        navigator.clipboard.writeText(address);
+        notification.success({
+          message: '주소 복사 완료',
+          description: '주소가 클립보드에 복사되었습니다',
+          placement: 'topRight',
+        });
+      }
     }
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Space, Typography, Statistic } from 'antd';
 import {
   CheckCircleOutlined,
@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import { Card, Button } from '../../common';
 import { CURRENT_NETWORK } from '../../../utils/constants';
+import { formatAddressForAPI } from '../../../utils/cardano';
 
 const { Text } = Typography;
 
@@ -31,6 +32,28 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
   onRefreshBalance,
   isRefreshing = false,
 }) => {
+  const [displayAddress, setDisplayAddress] = useState(address);
+  const [isConverting, setIsConverting] = useState(false);
+
+  // 주소 변환
+  useEffect(() => {
+    const convertAddress = async () => {
+      if (!address) return;
+
+      setIsConverting(true);
+      try {
+        const formattedAddress = await formatAddressForAPI(address);
+        setDisplayAddress(formattedAddress);
+      } catch (error) {
+        console.error('주소 변환 실패:', error);
+        setDisplayAddress(address); // 변환 실패 시 원본 주소 사용
+      } finally {
+        setIsConverting(false);
+      }
+    };
+
+    convertAddress();
+  }, [address]);
   return (
     <Space direction='vertical' style={{ width: '100%' }} size='large'>
       {/* 지갑 정보 헤더 */}
@@ -91,13 +114,17 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
               border: '1px solid #e5e7eb',
             }}
           >
-            {address}
+            {isConverting ? '주소 변환 중...' : displayAddress}
+          </Text>
+          <Text style={{ fontSize: '11px', color: '#8c8c8c' }}>
+            {displayAddress.startsWith('addr') ? 'Bech32 형식' : '16진수 형식'}
           </Text>
           <Button
             variant='secondary'
             icon={<CopyOutlined />}
             onClick={onCopyAddress}
             style={{ width: '100%' }}
+            disabled={isConverting}
           >
             주소 복사
           </Button>
