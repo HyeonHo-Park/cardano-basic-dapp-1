@@ -1,67 +1,127 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-  Card,
-  Row,
-  Col,
-  Button,
-  Typography,
-  Space,
-  Alert,
-  Tag,
-  Statistic,
-} from 'antd';
-import {
-  WalletOutlined,
-  DisconnectOutlined,
-  CopyOutlined,
-  ReloadOutlined,
-  CheckCircleOutlined,
-} from '@ant-design/icons';
-import MainLayout from '../components/common/Layout/MainLayout';
+import React, { useState, useEffect } from 'react';
+import { Typography, Alert, notification } from 'antd';
+import { WalletOutlined } from '@ant-design/icons';
+import { MainLayout } from '../components/common';
+import { WalletConnect } from '../components/wallet/WalletConnect';
+import { WalletInfo } from '../components/wallet/WalletInfo';
+import { useWallet } from '../hooks/useWallet';
 
-const { Title, Text, Paragraph } = Typography;
+const { Title } = Typography;
 
 export default function WalletPage() {
-  const [isConnected, setIsConnected] = useState(false);
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [connectingWallet, setConnectingWallet] = useState<string | null>(null);
 
-  // 가상의 지갑 데이터
-  const walletData = {
-    address:
-      'addr_test1qz2fxv2umyhttkxyxp8x0dlpdt3k6cwng5pxj3jhsydzer3jcu5d8ps7zex2k2xt3uqxgjqnnj0vs2qd4a5cpjgkgsrq4n4v',
-    balance: '125.450000',
-    networkId: 0,
-    network: 'Preview Testnet',
-  };
+  const {
+    isConnected,
+    isConnecting,
+    connectedWallet,
+    address,
+    balance,
+    networkId,
+    error,
+    connectWallet,
+    disconnectWallet,
+    refreshBalance,
+    getAvailableWallets,
+    clearError,
+  } = useWallet();
 
-  const availableWallets = [
-    { name: 'Nami', icon: '🦎', installed: true },
-    { name: 'Eternl', icon: '♾️', installed: true },
-    { name: 'Lace', icon: '🃏', installed: false },
-  ];
+  // 클라이언트 마운트 감지
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  const handleConnect = async (walletName: string) => {
-    setIsConnecting(true);
-    setSelectedWallet(walletName);
+  const availableWallets = getAvailableWallets();
 
-    // 가상의 연결 프로세스
-    setTimeout(() => {
-      setIsConnected(true);
-      setIsConnecting(false);
-    }, 2000);
+  const handleConnect = async (walletKey: string) => {
+    setConnectingWallet(walletKey);
+    clearError();
+
+    try {
+      await connectWallet(walletKey);
+      notification.success({
+        message: '지갑 연결 성공',
+        description: '지갑이 성공적으로 연결되었습니다!',
+        placement: 'topRight',
+      });
+    } catch (error) {
+      notification.error({
+        message: '지갑 연결 실패',
+        description:
+          error instanceof Error ? error.message : '지갑 연결에 실패했습니다',
+        placement: 'topRight',
+      });
+    } finally {
+      setConnectingWallet(null);
+    }
   };
 
   const handleDisconnect = () => {
-    setIsConnected(false);
-    setSelectedWallet(null);
+    disconnectWallet();
+    notification.success({
+      message: '지갑 연결 해제',
+      description: '지갑 연결이 해제되었습니다',
+      placement: 'topRight',
+    });
   };
 
-  const copyAddress = () => {
-    navigator.clipboard.writeText(walletData.address);
+  const handleCopyAddress = () => {
+    if (address) {
+      navigator.clipboard.writeText(address);
+      notification.success({
+        message: '주소 복사 완료',
+        description: '주소가 클립보드에 복사되었습니다',
+        placement: 'topRight',
+      });
+    }
   };
+
+  const handleRefreshBalance = async () => {
+    setIsRefreshing(true);
+    try {
+      await refreshBalance();
+      notification.success({
+        message: '잔액 새로고침 완료',
+        description: '잔액이 새로고침되었습니다',
+        placement: 'topRight',
+      });
+    } catch (error) {
+      console.log('잔액 새로고침 실패: ', error);
+      notification.error({
+        message: '잔액 새로고침 실패',
+        description: '잔액 새로고침에 실패했습니다',
+        placement: 'topRight',
+      });
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  // SSR 중에는 기본 로딩 화면 표시
+  if (!isMounted) {
+    return (
+      <MainLayout>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <Title
+            level={2}
+            style={{ textAlign: 'center', marginBottom: '32px' }}
+          >
+            <WalletOutlined /> 지갑 관리
+          </Title>
+          <Alert
+            message='지갑 정보를 불러오는 중...'
+            type='info'
+            showIcon
+            style={{ marginBottom: '24px' }}
+          />
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
@@ -70,205 +130,58 @@ export default function WalletPage() {
           <WalletOutlined /> 지갑 관리
         </Title>
 
+        {/* 에러 알림 */}
+        {error && (
+          <Alert
+            message='지갑 연결 오류'
+            description={error}
+            type='error'
+            showIcon
+            closable
+            onClose={clearError}
+            style={{ marginBottom: '24px' }}
+          />
+        )}
+
         {!isConnected ? (
           // 지갑 연결 화면
           <>
             <Alert
-              message='지갑 연결이 필요합니다'
-              description='카르다노 dApp을 사용하기 위해서는 지갑을 연결해야 합니다. 아래에서 사용 가능한 지갑을 선택해주세요.'
+              message='Lace 지갑 연결이 필요합니다'
+              description='카르다노 dApp을 사용하기 위해서는 Lace 지갑을 연결해야 합니다. IOG에서 개발한 공식 지갑입니다.'
               type='info'
               showIcon
               style={{ marginBottom: '24px' }}
             />
 
-            <Card title='사용 가능한 지갑' style={{ marginBottom: '24px' }}>
-              <Row gutter={[16, 16]}>
-                {availableWallets.map(wallet => (
-                  <Col xs={24} sm={8} key={wallet.name}>
-                    <Card
-                      hoverable={wallet.installed}
-                      style={{
-                        textAlign: 'center',
-                        opacity: wallet.installed ? 1 : 0.6,
-                        cursor: wallet.installed ? 'pointer' : 'not-allowed',
-                      }}
-                      onClick={() =>
-                        wallet.installed && handleConnect(wallet.name)
-                      }
-                    >
-                      <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-                        {wallet.icon}
-                      </div>
-                      <Title level={4}>{wallet.name}</Title>
-                      {wallet.installed ? (
-                        <Tag color='green'>설치됨</Tag>
-                      ) : (
-                        <Tag color='red'>미설치</Tag>
-                      )}
-                      {isConnecting && selectedWallet === wallet.name && (
-                        <div style={{ marginTop: '16px' }}>
-                          <Button loading>연결 중...</Button>
-                        </div>
-                      )}
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            </Card>
-
-            <Card title='지갑 설치 가이드'>
-              <Paragraph>
-                <Text strong>지갑이 설치되지 않은 경우:</Text>
-              </Paragraph>
-              <ul>
-                <li>
-                  <a
-                    href='https://namiwallet.io'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: '#8b5cf6' }}
-                  >
-                    Nami Wallet
-                  </a>{' '}
-                  - 가장 인기있는 카르다노 지갑
-                </li>
-                <li>
-                  <a
-                    href='https://eternl.io'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: '#8b5cf6' }}
-                  >
-                    Eternl Wallet
-                  </a>{' '}
-                  - 고급 기능을 제공하는 지갑
-                </li>
-                <li>
-                  <a
-                    href='https://www.lace.io'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: '#8b5cf6' }}
-                  >
-                    Lace Wallet
-                  </a>{' '}
-                  - IOG에서 개발한 공식 지갑
-                </li>
-              </ul>
-            </Card>
+            <WalletConnect
+              wallets={availableWallets}
+              isConnecting={isConnecting}
+              connectingWallet={connectingWallet}
+              onConnect={handleConnect}
+            />
           </>
         ) : (
           // 지갑 연결됨 화면
           <>
             <Alert
               message='지갑이 성공적으로 연결되었습니다!'
-              description={`${selectedWallet} 지갑이 연결되어 있습니다.`}
+              description={`${connectedWallet} 지갑이 연결되어 있습니다.`}
               type='success'
               showIcon
               style={{ marginBottom: '24px' }}
             />
 
-            {/* 지갑 정보 카드 */}
-            <Card
-              title={
-                <Space>
-                  <CheckCircleOutlined style={{ color: '#10b981' }} />
-                  연결된 지갑: {selectedWallet}
-                </Space>
-              }
-              extra={
-                <Button
-                  danger
-                  icon={<DisconnectOutlined />}
-                  onClick={handleDisconnect}
-                >
-                  연결 해제
-                </Button>
-              }
-              style={{ marginBottom: '24px' }}
-            >
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12}>
-                  <Card size='small'>
-                    <Statistic
-                      title='ADA 잔액'
-                      value={walletData.balance}
-                      suffix='ADA'
-                      precision={6}
-                      valueStyle={{ color: '#10b981' }}
-                    />
-                  </Card>
-                </Col>
-                <Col xs={24} sm={12}>
-                  <Card size='small'>
-                    <Statistic
-                      title='네트워크'
-                      value={walletData.network}
-                      valueStyle={{ color: '#8b5cf6' }}
-                    />
-                  </Card>
-                </Col>
-              </Row>
-            </Card>
-
-            {/* 지갑 주소 카드 */}
-            <Card title='지갑 주소' style={{ marginBottom: '24px' }}>
-              <Space direction='vertical' style={{ width: '100%' }}>
-                <Text
-                  code
-                  style={{
-                    wordBreak: 'break-all',
-                    fontSize: '12px',
-                    padding: '8px',
-                    borderRadius: '4px',
-                    display: 'block',
-                  }}
-                >
-                  {walletData.address}
-                </Text>
-                <Button
-                  icon={<CopyOutlined />}
-                  onClick={copyAddress}
-                  style={{ width: '100%' }}
-                >
-                  주소 복사
-                </Button>
-              </Space>
-            </Card>
-
-            {/* 빠른 액션 */}
-            <Card title='빠른 액션'>
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={8}>
-                  <Button
-                    type='primary'
-                    size='large'
-                    style={{ width: '100%', height: '60px' }}
-                    href='/send'
-                  >
-                    ADA 송금
-                  </Button>
-                </Col>
-                <Col xs={24} sm={8}>
-                  <Button
-                    size='large'
-                    style={{ width: '100%', height: '60px' }}
-                    href='/history'
-                  >
-                    거래 내역
-                  </Button>
-                </Col>
-                <Col xs={24} sm={8}>
-                  <Button
-                    icon={<ReloadOutlined />}
-                    size='large'
-                    style={{ width: '100%', height: '60px' }}
-                  >
-                    잔액 새로고침
-                  </Button>
-                </Col>
-              </Row>
-            </Card>
+            <WalletInfo
+              walletName={connectedWallet!}
+              address={address!}
+              balance={balance!}
+              networkId={networkId!}
+              onDisconnect={handleDisconnect}
+              onCopyAddress={handleCopyAddress}
+              onRefreshBalance={handleRefreshBalance}
+              isRefreshing={isRefreshing}
+            />
           </>
         )}
       </div>

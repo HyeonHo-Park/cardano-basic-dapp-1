@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, Row, Col, Statistic, Typography, Space } from 'antd';
+import { Row, Col, Statistic, Typography, Space } from 'antd';
 import {
   WalletOutlined,
   SendOutlined,
@@ -11,7 +11,7 @@ import {
   SwapOutlined,
 } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
-import MainLayout from '../components/common/Layout/MainLayout';
+import { Card, MainLayout } from '../components/common';
 
 const { Title, Paragraph } = Typography;
 
@@ -26,7 +26,10 @@ export default function HomePage() {
     <MainLayout>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* 환영 섹션 */}
-        <Card style={{ marginBottom: '24px', textAlign: 'center' }}>
+        <Card
+          style={{ marginBottom: '24px', textAlign: 'center' }}
+          padding='large'
+        >
           <Title level={2} style={{ marginBottom: '16px' }}>
             Cardano dApp에 오신 것을 환영합니다! 🚀
           </Title>
@@ -87,11 +90,10 @@ export default function HomePage() {
         <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
           <Col xs={24} md={8}>
             <Card
-              hoverable
+              variant='interactive'
               style={{
                 textAlign: 'center',
                 height: '200px',
-                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -109,18 +111,17 @@ export default function HomePage() {
                 지갑 연결
               </Title>
               <Paragraph style={{ margin: 0, color: '#a6a6a6' }}>
-                Nami, Eternl 등의 카르다노 지갑을 연결하여 시작하세요
+                Lace 카르다노 지갑을 연결하여 시작하세요
               </Paragraph>
             </Card>
           </Col>
 
           <Col xs={24} md={8}>
             <Card
-              hoverable
+              variant='interactive'
               style={{
                 textAlign: 'center',
                 height: '200px',
-                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -145,11 +146,10 @@ export default function HomePage() {
 
           <Col xs={24} md={8}>
             <Card
-              hoverable
+              variant='interactive'
               style={{
                 textAlign: 'center',
                 height: '200px',
-                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',

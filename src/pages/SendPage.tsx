@@ -2,20 +2,17 @@
 
 import React, { useState } from 'react';
 import {
-  Card,
   Form,
   Input,
-  Button,
   Typography,
   Space,
   Alert,
   Row,
   Col,
   InputNumber,
-  Modal,
 } from 'antd';
 import { SendOutlined, WalletOutlined } from '@ant-design/icons';
-import MainLayout from '../components/common/Layout/MainLayout';
+import { Card, Button, Modal, MainLayout } from '../components/common';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -141,7 +138,9 @@ export default function SendPage() {
                   />
                 </Col>
                 <Col>
-                  <Button onClick={setMaxAmount}>MAX</Button>
+                  <Button variant='secondary' onClick={setMaxAmount}>
+                    MAX
+                  </Button>
                 </Col>
               </Row>
             </Form.Item>
@@ -166,10 +165,10 @@ export default function SendPage() {
 
             <Form.Item>
               <Button
-                type='primary'
+                variant='primary'
                 htmlType='submit'
                 size='large'
-                block
+                style={{ width: '100%' }}
                 icon={<SendOutlined />}
               >
                 송금하기
@@ -190,6 +189,7 @@ export default function SendPage() {
 
         {/* 확인 모달 */}
         <Modal
+          variant='confirm'
           title='송금 확인'
           open={showConfirmModal}
           onOk={handleConfirmSend}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layout, Menu, Button, Typography, Space } from 'antd';
+import { Layout, Menu, Button, Typography, Space, App } from 'antd';
 import {
   WalletOutlined,
   SendOutlined,
@@ -52,85 +52,87 @@ export default function MainLayout({ children }: MainLayoutProps) {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        style={{
-          borderRight: '1px solid #404040',
-        }}
-      >
-        <div
+    <App>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
           style={{
-            padding: '16px',
-            textAlign: 'center',
-            borderBottom: '1px solid #404040',
+            borderRight: '1px solid #404040',
           }}
         >
-          <Title
-            level={4}
+          <div
             style={{
-              color: '#8b5cf6',
-              margin: 0,
-              fontSize: collapsed ? '14px' : '18px',
+              padding: '16px',
+              textAlign: 'center',
+              borderBottom: '1px solid #404040',
             }}
           >
-            {collapsed ? 'C' : 'Cardano'}
-          </Title>
-        </div>
-
-        <Menu
-          mode='inline'
-          selectedKeys={pathname ? [pathname] : []}
-          items={menuItems}
-          onClick={handleMenuClick}
-          style={{
-            border: 'none',
-          }}
-        />
-      </Sider>
-
-      <Layout>
-        <Header
-          style={{
-            padding: '0 16px',
-            borderBottom: '1px solid #404040',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Space>
-            <Button
-              type='text'
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
+            <Title
+              level={4}
               style={{
-                fontSize: '16px',
-                width: 64,
-                height: 64,
+                color: '#8b5cf6',
+                margin: 0,
+                fontSize: collapsed ? '14px' : '18px',
               }}
-            />
-
-            <Title level={4} style={{ margin: 0 }}>
-              Cardano dApp Basic - 1
+            >
+              {collapsed ? 'C' : 'Cardano'}
             </Title>
-          </Space>
-        </Header>
+          </div>
 
-        <Content
-          style={{
-            margin: '16px',
-            padding: '24px',
-            borderRadius: '8px',
-            border: '1px solid #404040',
-            overflow: 'auto',
-          }}
-        >
-          {children}
-        </Content>
+          <Menu
+            mode='inline'
+            selectedKeys={pathname ? [pathname] : []}
+            items={menuItems}
+            onClick={handleMenuClick}
+            style={{
+              border: 'none',
+            }}
+          />
+        </Sider>
+
+        <Layout>
+          <Header
+            style={{
+              padding: '0 16px',
+              borderBottom: '1px solid #404040',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Space>
+              <Button
+                type='text'
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: '16px',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+
+              <Title level={4} style={{ margin: 0 }}>
+                Cardano dApp Basic - 1
+              </Title>
+            </Space>
+          </Header>
+
+          <Content
+            style={{
+              margin: '16px',
+              padding: '24px',
+              borderRadius: '8px',
+              border: '1px solid #404040',
+              overflow: 'auto',
+            }}
+          >
+            {children}
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </App>
   );
 }

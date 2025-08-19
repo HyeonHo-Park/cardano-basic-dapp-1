@@ -2,12 +2,10 @@
 
 import React, { useState } from 'react';
 import {
-  Card,
   Table,
   Typography,
   Space,
   Tag,
-  Button,
   Row,
   Col,
   Input,
@@ -23,7 +21,7 @@ import {
   EyeOutlined,
   CopyOutlined,
 } from '@ant-design/icons';
-import MainLayout from '../components/common/Layout/MainLayout';
+import { Card, Button, MainLayout } from '../components/common';
 
 const { Title, Text } = Typography;
 const { Search } = Input;
@@ -160,7 +158,7 @@ export default function HistoryPage() {
             {address.slice(0, 15)}...{address.slice(-10)}
           </Text>
           <Button
-            type='text'
+            variant='ghost'
             size='small'
             icon={<CopyOutlined />}
             onClick={() => copyToClipboard(address)}
@@ -185,7 +183,7 @@ export default function HistoryPage() {
         <Space>
           <Tooltip title='블록 탐색기에서 보기'>
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               icon={<EyeOutlined />}
               onClick={() => viewOnExplorer(record.hash)}
@@ -193,7 +191,7 @@ export default function HistoryPage() {
           </Tooltip>
           <Tooltip title='트랜잭션 해시 복사'>
             <Button
-              type='text'
+              variant='ghost'
               size='small'
               icon={<CopyOutlined />}
               onClick={() => copyToClipboard(record.hash)}
@@ -304,6 +302,7 @@ export default function HistoryPage() {
             </Col>
             <Col xs={24} sm={6} md={4}>
               <Button
+                variant='secondary'
                 icon={<ReloadOutlined />}
                 onClick={handleRefresh}
                 loading={loading}
@@ -314,7 +313,9 @@ export default function HistoryPage() {
             </Col>
             <Col xs={24} sm={12} md={8} style={{ textAlign: 'right' }}>
               <Space>
-                <Button icon={<ExportOutlined />}>CSV 내보내기</Button>
+                <Button variant='secondary' icon={<ExportOutlined />}>
+                  CSV 내보내기
+                </Button>
               </Space>
             </Col>
           </Row>
