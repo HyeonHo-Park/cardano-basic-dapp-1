@@ -22,6 +22,26 @@ export interface WalletInstance {
     payload: string
   ): Promise<{ signature: string; key: string }>;
   submitTx(tx: string): Promise<string>;
+
+  // 확장 API (일부 지갑에서 지원)
+  experimental?: {
+    send?: (request: {
+      outputs: Array<{
+        address: string;
+        amount: { ada: string } | string;
+      }>;
+      metadata?: Record<string, string>;
+    }) => Promise<string>;
+  };
+
+  // 기본 송금 API (일부 지갑에서 지원)
+  send?: (request: {
+    outputs: Array<{
+      address: string;
+      amount: string;
+    }>;
+    metadata?: Record<string, string>;
+  }) => Promise<string>;
 }
 
 export interface WalletState {
