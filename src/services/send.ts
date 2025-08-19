@@ -29,8 +29,6 @@ export class SendService {
     params: SendTransactionParams
   ): Promise<TransactionResult> {
     try {
-      console.log('🚀 지갑 내장 API 송금 시작:', params);
-
       // 1. 주소 유효성 검증
       const isValidAddress = await this.validateAddress(
         params.recipientAddress
@@ -42,11 +40,11 @@ export class SendService {
       // 2. 송금액을 lovelace로 변환
       const amountInLovelace = this.adaToLovelace(params.amount);
       console.log(
-        `💰 송금액: ${params.amount} ADA (${amountInLovelace} lovelace)`
+        `송금 시작: ${params.amount} ADA (${amountInLovelace} lovelace)`
       );
 
       // signTx + submitTx 방식으로 직접 송금
-      console.log('🔧 signTx + submitTx 방식으로 송금 시작');
+
       return await this.sendTransactionWithSignTx(walletInstance, params);
     } catch (error) {
       console.error('💥 SendService 전체 실패:', error);
@@ -329,9 +327,7 @@ export class SendService {
       const fee = txBody.fee();
       const feeInAda = (Number(fee.to_str()) / 1_000_000).toFixed(6);
 
-      console.log('🎉 송금 완료!');
-      console.log(`📋 트랜잭션 해시: ${txHash}`);
-      console.log(`💰 수수료: ${feeInAda} ADA`);
+      console.log('송금 완료:', txHash);
 
       return {
         txHash,

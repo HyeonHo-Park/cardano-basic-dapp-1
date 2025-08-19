@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Typography, Alert, App, message } from 'antd';
+import { Typography, Alert, App } from 'antd';
 import { WalletOutlined } from '@ant-design/icons';
 import { MainLayout } from '../../src/components/common';
 import { WalletConnect } from '../../src/components/wallet/WalletConnect';
@@ -15,6 +15,9 @@ export default function WalletPage() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [connectingWallet, setConnectingWallet] = useState<string | null>(null);
+
+  // App context에서 message 가져오기
+  const { message } = App.useApp();
 
   const {
     isConnected,

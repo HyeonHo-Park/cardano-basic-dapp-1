@@ -11,7 +11,6 @@ import {
   Col,
   InputNumber,
   App,
-  message,
 } from 'antd';
 import {
   SendOutlined,
@@ -31,6 +30,9 @@ export default function SendPage() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [formData, setFormData] = useState<SendTransactionParams | null>(null);
   const [estimatedFee, setEstimatedFee] = useState(0.17);
+
+  // App context에서 message 가져오기
+  const { message } = App.useApp();
 
   // 지갑 연결 상태
   const {

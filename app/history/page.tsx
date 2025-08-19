@@ -11,10 +11,10 @@ import {
   Input,
   Select,
   Tooltip,
-  message,
   Alert,
   Empty,
   Button as AntButton,
+  App,
 } from 'antd';
 import {
   HistoryOutlined,
@@ -45,6 +45,9 @@ export default function HistoryPage() {
   const [filterType, setFilterType] = useState<'all' | 'sent' | 'received'>(
     'all'
   );
+
+  // App context에서 message 가져오기
+  const { message } = App.useApp();
 
   // 지갑 연결
   const { isConnected, address, connectWallet, getAvailableWallets } =
