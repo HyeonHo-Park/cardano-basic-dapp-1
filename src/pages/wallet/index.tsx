@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Alert, App } from 'antd';
 import { WalletOutlined } from '@ant-design/icons';
-import { MainLayout } from '../../src/components/common';
-import { WalletConnect } from '../../src/components/wallet/WalletConnect';
-import { WalletInfo } from '../../src/components/wallet/WalletInfo';
-import { useWallet } from '../../src/hooks/useWallet';
-import { formatAddressForAPI } from '../../src/utils/cardano';
+import { MainLayout } from '../../components/common';
+import { WalletConnect } from './WalletConnect';
+import { WalletInfo } from './WalletInfo';
+import { useWallet } from '../../hooks/useWallet';
+import { formatAddressForAPI } from '../../utils/cardano';
 
 const { Title } = Typography;
 
@@ -41,7 +41,7 @@ export default function WalletPage() {
 
   const availableWallets = getAvailableWallets();
 
-  const handleConnect = async (walletKey: string) => {
+  const connectWalletHandler = async (walletKey: string) => {
     setConnectingWallet(walletKey);
     clearError();
 
@@ -57,27 +57,25 @@ export default function WalletPage() {
     }
   };
 
-  const handleDisconnect = () => {
+  const disconnectWalletHandler = () => {
     disconnectWallet();
     message.success('지갑 연결이 해제되었습니다');
   };
 
-  const handleCopyAddress = async () => {
+  const copyAddressHandler = async () => {
     if (address) {
       try {
-        // 변환된 주소를 복사
         const formattedAddress = await formatAddressForAPI(address);
         navigator.clipboard.writeText(formattedAddress);
         message.success('변환된 주소가 클립보드에 복사되었습니다');
       } catch {
-        // 변환 실패 시 원본 주소 복사
         navigator.clipboard.writeText(address);
         message.success('주소가 클립보드에 복사되었습니다');
       }
     }
   };
 
-  const handleRefreshBalance = async () => {
+  const refreshBalanceHandler = async () => {
     setIsRefreshing(true);
     try {
       await refreshBalance();
@@ -153,7 +151,7 @@ export default function WalletPage() {
                 wallets={availableWallets}
                 isConnecting={isConnecting}
                 connectingWallet={connectingWallet}
-                onConnect={handleConnect}
+                onConnect={connectWalletHandler}
               />
             </>
           ) : (
@@ -172,9 +170,9 @@ export default function WalletPage() {
                 address={address!}
                 balance={balance!}
                 networkId={networkId!}
-                onDisconnect={handleDisconnect}
-                onCopyAddress={handleCopyAddress}
-                onRefreshBalance={handleRefreshBalance}
+                onDisconnect={disconnectWalletHandler}
+                onCopyAddress={copyAddressHandler}
+                onRefreshBalance={refreshBalanceHandler}
                 isRefreshing={isRefreshing}
               />
             </>

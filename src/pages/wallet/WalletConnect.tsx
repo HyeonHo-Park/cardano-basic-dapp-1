@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tag, Typography, Space } from 'antd';
-import { Card, Button } from '../../common';
+import { Card, Button } from '../../components/common';
 
 const { Title } = Typography;
 
@@ -117,5 +117,3 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
     </Card>
   );
 };
-
-export default WalletConnect;

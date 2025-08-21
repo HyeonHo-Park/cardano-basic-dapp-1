@@ -80,7 +80,9 @@ classDiagram
         +getUsedAddresses() string[]
         +getUnusedAddresses() string[]
         +getChangeAddress() string
+        +getRewardAddresses() string[]
         +signTx(tx, partialSign) string
+        +signData(address, payload) Object
         +submitTx(tx) string
     }
 
@@ -103,11 +105,14 @@ classDiagram
 
 ```typescript
 // 네트워크 설정
-NETWORKS = {
-  MAINNET: { id: 1, name: 'mainnet' },
-  PREVIEW: { id: 0, name: 'preview' },
-  PREPROD: { id: 0, name: 'preprod' },
+CARDANO_NETWORKS = {
+  MAINNET: { id: 1, name: 'mainnet', displayName: 'Mainnet' },
+  PREVIEW: { id: 0, name: 'preview', displayName: 'Preview Testnet' },
+  PREPROD: { id: 0, name: 'preprod', displayName: 'Preprod Testnet' },
 };
+
+// 현재 네트워크
+CURRENT_NETWORK = CARDANO_NETWORKS.PREVIEW;
 
 // 지갑 목록
 SUPPORTED_WALLETS = [
@@ -117,10 +122,10 @@ SUPPORTED_WALLETS = [
 ];
 
 // 트랜잭션 설정
-TX_CONFIG = {
-  MIN_FEE: 44,
-  FEE_PER_BYTE: 155381,
-  UTXO_COST: 4310,
+TRANSACTION_CONFIG = {
+  MIN_UTXO_VALUE: 1_000_000, // 1 ADA in lovelace
+  DEFAULT_FEE_ESTIMATE: 0.2, // ADA
   MAX_TX_SIZE: 16384,
+  TTL_HOURS: 1,
 };
 ```

@@ -1,17 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Row, Col, Statistic, Typography, Space } from 'antd';
+import { Row, Col, Statistic, Typography } from 'antd';
 import {
   WalletOutlined,
   SendOutlined,
   HistoryOutlined,
-  LinkOutlined,
   DollarOutlined,
   SwapOutlined,
 } from '@ant-design/icons';
-import { useRouter } from 'next/navigation';
-import { Card, MainLayout } from '../src/components/common';
+import { useRouter } from 'next/router';
+import { Card, MainLayout } from '../components/common';
 
 const { Title, Paragraph } = Typography;
 
@@ -172,67 +171,6 @@ export default function HomePage() {
             </Card>
           </Col>
         </Row>
-
-        {/* 정보 섹션 */}
-        <Card title='🔗 유용한 링크'>
-          <Row gutter={[16, 16]}>
-            <Col xs={24} sm={12}>
-              <Space direction='vertical' size='middle'>
-                <div>
-                  <Title level={5}>
-                    <LinkOutlined /> 카르다노 리소스
-                  </Title>
-                  <ul>
-                    <li>
-                      <a
-                        href='https://cardano.org'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        style={{ color: '#8b5cf6' }}
-                      >
-                        카르다노 공식 사이트
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href='https://docs.cardano.org'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        style={{ color: '#8b5cf6' }}
-                      >
-                        개발자 문서
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href='https://cardanoscan.io'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        style={{ color: '#8b5cf6' }}
-                      >
-                        블록 탐색기
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </Space>
-            </Col>
-            <Col xs={24} sm={12}>
-              <Space direction='vertical' size='middle'>
-                <div>
-                  <Title level={5}>
-                    <WalletOutlined /> 지원 지갑
-                  </Title>
-                  <ul>
-                    <li>Nami Wallet</li>
-                    <li>Eternl (CCVault)</li>
-                    <li>Lace Wallet</li>
-                  </ul>
-                </div>
-              </Space>
-            </Col>
-          </Row>
-        </Card>
       </div>
     </MainLayout>
   );

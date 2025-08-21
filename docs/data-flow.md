@@ -13,7 +13,7 @@ flowchart TD
     subgraph "State Management"
         UW[useWallet Hook]
         UT[useTransaction Hook]
-        LS[Local State]
+        LS[Local State - useState]
     end
 
     subgraph "Service Layer"
@@ -55,7 +55,7 @@ flowchart LR
     GetInfo --> Network[네트워크 정보]
     GetInfo --> UTXO[UTXO 정보]
 
-    Address --> WalletState[(지갑 상태)]
+    Address --> WalletState[(지갑 상태 - useState)]
     Balance --> WalletState
     Network --> WalletState
     UTXO --> WalletState
@@ -87,13 +87,13 @@ flowchart TD
 
 ## 상태 업데이트 매트릭스
 
-| 액션              | 지갑 상태        | 거래 상태    | UI 상태        |
-| ----------------- | ---------------- | ------------ | -------------- |
-| **지갑 연결**     | ✅ 업데이트      | ➖ 변화없음  | ✅ 로딩 상태   |
-| **잔액 새로고침** | ✅ 잔액만        | ➖ 변화없음  | ✅ 로딩 상태   |
-| **송금 실행**     | ➖ 변화없음      | ✅ 진행 상태 | ✅ 로딩 상태   |
-| **송금 완료**     | ⏳ 자동 새로고침 | ✅ 완료 상태 | ✅ 성공 메시지 |
-| **거래내역 조회** | ➖ 변화없음      | ✅ 업데이트  | ✅ 로딩 상태   |
+| 액션              | 지갑 상태 (useState) | 거래 상태 (useState) | UI 상태 (로컬) |
+| ----------------- | -------------------- | -------------------- | -------------- |
+| **지갑 연결**     | ✅ 업데이트          | ➖ 변화없음          | ✅ 로딩 상태   |
+| **잔액 새로고침** | ✅ 잔액만            | ➖ 변화없음          | ✅ 로딩 상태   |
+| **송금 실행**     | ➖ 변화없음          | ✅ 진행 상태         | ✅ 로딩 상태   |
+| **송금 완료**     | ⏳ 자동 새로고침     | ✅ 완료 상태         | ✅ 성공 메시지 |
+| **거래내역 조회** | ➖ 변화없음          | ✅ 업데이트          | ✅ 로딩 상태   |
 
 ## 에러 전파 경로
 
@@ -115,4 +115,22 @@ flowchart TD
     UserMessage2 --> UI
     UserMessage3 --> UI
     UserMessage4 --> UI
+```
+
+## React Hook 기반 상태 관리
+
+```mermaid
+flowchart TD
+    Component[React Component] --> UseHook[Custom Hook]
+    UseHook --> UseState[useState]
+    UseHook --> UseEffect[useEffect]
+    UseHook --> Service[Service Class]
+
+    UseState --> LocalState[Local State]
+    UseEffect --> SideEffects[Side Effects]
+    Service --> ExternalAPI[External APIs]
+
+    LocalState --> Render[Component Re-render]
+    SideEffects --> StateUpdate[State Update]
+    StateUpdate --> Render
 ```

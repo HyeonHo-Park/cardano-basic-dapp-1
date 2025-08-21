@@ -23,9 +23,9 @@ repos:
       # ESLint 체크 (소스 파일만)
       - id: eslint
         name: ESLint
-        entry: pnpm eslint --fix --ext .js,.jsx,.ts,.tsx --max-warnings 0 src/ app/
+        entry: pnpm eslint --fix --ext .js,.jsx,.ts,.tsx --max-warnings 0 src/
         language: system
-        files: ^(src|app)/.*\.(js|jsx|ts|tsx)$
+        files: ^src/.*\.(js|jsx|ts|tsx)$
         pass_filenames: false
 
       # TypeScript 타입 체크

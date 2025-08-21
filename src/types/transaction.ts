@@ -6,7 +6,7 @@ export interface Transaction {
   amount: number;
   fee: number;
   address: string;
-  timestamp: string;
+  timestamp: number;
   status: 'pending' | 'confirmed' | 'failed';
   block?: number;
   memo?: string;

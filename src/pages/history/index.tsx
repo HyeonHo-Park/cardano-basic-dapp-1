@@ -1,44 +1,25 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
-import {
-  Table,
-  Typography,
-  Space,
-  Tag,
-  Row,
-  Col,
-  Input,
-  Select,
-  Tooltip,
-  Alert,
-  Empty,
-  Button as AntButton,
-  App,
-} from 'antd';
+import { Typography, Space, Row, Col, Alert, App } from 'antd';
 import {
   HistoryOutlined,
   ReloadOutlined,
-  ArrowUpOutlined,
-  ArrowDownOutlined,
-  EyeOutlined,
-  CopyOutlined,
   WalletOutlined,
   ExclamationCircleOutlined,
-  LinkOutlined,
 } from '@ant-design/icons';
-import { Card, Button, MainLayout } from '../../src/components/common';
-import { useWallet } from '../../src/hooks/useWallet';
+import { Card, Button, MainLayout } from '../../components/common';
+import { TransactionList } from './TransactionList';
+import { TransactionFilter } from './TransactionFilter';
+import { useWallet } from '../../hooks/useWallet';
 import {
   useTransaction,
   useTransactionStats,
-} from '../../src/hooks/useTransaction';
-import { TransactionFilter } from '../../src/types/transaction';
-import { formatSmartADA } from '../../src/utils/cardano';
+} from '../../hooks/useTransaction';
+import { TransactionFilter as TransactionFilterType } from '../../types/transaction';
+import { formatSmartADA } from '../../utils/cardano';
 
 const { Title, Text } = Typography;
-const { Search } = Input;
-const { Option } = Select;
 
 export default function HistoryPage() {
   const [searchText, setSearchText] = useState('');
@@ -60,7 +41,6 @@ export default function HistoryPage() {
     error,
     hasMore,
     refreshTransactions,
-    loadMoreTransactions,
     applyFilter,
     clearError,
     getExplorerUrl,
@@ -70,25 +50,24 @@ export default function HistoryPage() {
   // 거래내역 통계
   const stats = useTransactionStats(transactions);
 
-  // 유틸리티 함수들
-  const copyToClipboard = (text: string) => {
+  const copyToClipboardHandler = (text: string) => {
     navigator.clipboard.writeText(text);
     message.success('클립보드에 복사되었습니다');
   };
 
-  const viewOnExplorer = (hash: string) => {
+  const viewExplorerHandler = (hash: string) => {
     const url = getExplorerUrl(hash);
     window.open(url, '_blank');
   };
 
-  const viewAddressOnExplorer = (addr: string) => {
+  const viewAddressExplorerHandler = (addr: string) => {
     const url = getAddressExplorerUrl(addr);
     window.open(url, '_blank');
   };
 
   // 필터 적용
   useEffect(() => {
-    const filter: TransactionFilter = {};
+    const filter: TransactionFilterType = {};
 
     if (filterType !== 'all') {
       filter.type = filterType;
@@ -110,8 +89,7 @@ export default function HistoryPage() {
     );
   }, [transactions, searchText]);
 
-  // 지갑 연결 유도
-  const handleConnectWallet = async () => {
+  const connectWalletHandler = async () => {
     const wallets = getAvailableWallets();
     const availableWallet = wallets.find(w => w.isInstalled);
 
@@ -126,137 +104,6 @@ export default function HistoryPage() {
       message.warning('설치된 지갑이 없습니다. Lace 지갑을 설치해주세요.');
     }
   };
-
-  // 테이블 컬럼 정의
-  const columns = [
-    {
-      title: '거래 해시',
-      dataIndex: 'hash',
-      key: 'hash',
-      width: 120,
-      render: (hash: string) => (
-        <Space>
-          <Text code style={{ fontSize: '12px' }}>
-            {`${hash.substring(0, 8)}...${hash.substring(hash.length - 8)}`}
-          </Text>
-          <Tooltip title='클립보드에 복사'>
-            <AntButton
-              type='text'
-              size='small'
-              icon={<CopyOutlined />}
-              onClick={() => copyToClipboard(hash)}
-            />
-          </Tooltip>
-          <Tooltip title='블록체인 탐색기에서 보기'>
-            <AntButton
-              type='text'
-              size='small'
-              icon={<EyeOutlined />}
-              onClick={() => viewOnExplorer(hash)}
-            />
-          </Tooltip>
-        </Space>
-      ),
-    },
-    {
-      title: '유형',
-      dataIndex: 'type',
-      key: 'type',
-      width: 80,
-      render: (type: string) => (
-        <Tag
-          color={type === 'sent' ? 'red' : 'green'}
-          icon={type === 'sent' ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-        >
-          {type === 'sent' ? '송금' : '수신'}
-        </Tag>
-      ),
-    },
-    {
-      title: '금액 (ADA)',
-      dataIndex: 'amount',
-      key: 'amount',
-      width: 120,
-      align: 'right' as const,
-      render: (amount: number) => (
-        <Text
-          strong
-          style={{
-            color: amount < 0 ? '#ff4d4f' : '#52c41a',
-          }}
-        >
-          {amount < 0 ? '' : '+'}
-          {amount.toFixed(6)}
-        </Text>
-      ),
-    },
-    {
-      title: '수수료 (ADA)',
-      dataIndex: 'fee',
-      key: 'fee',
-      width: 100,
-      align: 'right' as const,
-      render: (fee: number) => (
-        <Text style={{ color: '#8c8c8c' }}>{fee.toFixed(6)}</Text>
-      ),
-    },
-    {
-      title: '상대방 주소',
-      dataIndex: 'address',
-      key: 'address',
-      width: 150,
-      render: (address: string) => (
-        <Space>
-          <Text code style={{ fontSize: '12px' }}>
-            {`${address.substring(0, 12)}...${address.substring(address.length - 12)}`}
-          </Text>
-          <Tooltip title='클립보드에 복사'>
-            <AntButton
-              type='text'
-              size='small'
-              icon={<CopyOutlined />}
-              onClick={() => copyToClipboard(address)}
-            />
-          </Tooltip>
-          <Tooltip title='주소를 탐색기에서 보기'>
-            <AntButton
-              type='text'
-              size='small'
-              icon={<LinkOutlined />}
-              onClick={() => viewAddressOnExplorer(address)}
-            />
-          </Tooltip>
-        </Space>
-      ),
-    },
-    {
-      title: '시간',
-      dataIndex: 'timestamp',
-      key: 'timestamp',
-      width: 140,
-      render: (timestamp: string) => (
-        <Text style={{ fontSize: '12px' }}>{timestamp}</Text>
-      ),
-    },
-    {
-      title: '상태',
-      dataIndex: 'status',
-      key: 'status',
-      width: 80,
-      render: (status: string) => {
-        const statusConfig = {
-          confirmed: { color: 'green', text: '확인됨' },
-          pending: { color: 'orange', text: '대기중' },
-          failed: { color: 'red', text: '실패' },
-        };
-        const config = statusConfig[status as keyof typeof statusConfig] || {
-          color: 'default',
-          text: status,
-        };
-        return <Tag color={config.color}>{config.text}</Tag>;
-      },
-    },
-  ];
 
   // 지갑이 연결되지 않은 경우
   if (!isConnected) {
@@ -288,7 +135,7 @@ export default function HistoryPage() {
                 >
                   거래내역을 조회하려면 먼저 지갑을 연결해야 합니다.
                 </Text>
-                <Button onClick={handleConnectWallet}>지갑 연결하기</Button>
+                <Button onClick={connectWalletHandler}>지갑 연결하기</Button>
               </Card>
             </Col>
           </Row>
@@ -540,140 +387,28 @@ export default function HistoryPage() {
           />
         )}
 
-        {/* 필터 및 검색 */}
-        <Card style={{ marginBottom: '24px' }}>
-          <Row gutter={[16, 16]} align='middle'>
-            <Col xs={24} sm={12} md={8}>
-              <Search
-                placeholder='거래 해시, 주소 또는 메모로 검색'
-                value={searchText}
-                onChange={e => setSearchText(e.target.value)}
-                allowClear
-              />
-            </Col>
-            <Col xs={24} sm={12} md={8}>
-              <Select
-                value={filterType}
-                onChange={setFilterType}
-                style={{ width: '100%' }}
-                placeholder='거래 유형 선택'
-              >
-                <Option value='all'>전체</Option>
-                <Option value='sent'>송금</Option>
-                <Option value='received'>수신</Option>
-              </Select>
-            </Col>
-            <Col xs={24} sm={24} md={8} style={{ textAlign: 'right' }}>
-              <Text style={{ color: '#8c8c8c' }}>
-                총 {filteredTransactions.length}건 중 표시
-              </Text>
-            </Col>
-          </Row>
+        {/* 필터 */}
+        <Card style={{ marginBottom: '16px' }}>
+          <TransactionFilter
+            searchText={searchText}
+            filterType={filterType}
+            totalCount={filteredTransactions.length}
+            onSearchChange={setSearchText}
+            onFilterChange={setFilterType}
+          />
         </Card>
 
-        {/* 거래 테이블 */}
-        <Card title={`거래 내역 (${filteredTransactions.length}건)`}>
-          {filteredTransactions.length === 0 && !loading ? (
-            <Empty
-              description='거래내역이 없습니다'
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-            />
-          ) : (
-            <Table
-              columns={columns}
-              dataSource={filteredTransactions.map((tx, index) => ({
-                ...tx,
-                key: index,
-              }))}
-              loading={loading}
-              scroll={{ x: 800 }}
-              pagination={{
-                pageSize: 10,
-                showSizeChanger: true,
-                showQuickJumper: true,
-                showTotal: (total, range) =>
-                  `${range[0]}-${range[1]} / 총 ${total}건`,
-              }}
-              expandable={{
-                expandedRowRender: record => (
-                  <div
-                    style={{
-                      padding: '16px',
-                      backgroundColor: '#fafafa',
-                      borderRadius: '4px',
-                    }}
-                  >
-                    <Row gutter={[16, 8]}>
-                      <Col span={24}>
-                        <Text strong>트랜잭션 해시:</Text>
-                        <br />
-                        <Space>
-                          <Text
-                            code
-                            style={{ fontSize: '12px', wordBreak: 'break-all' }}
-                          >
-                            {record.hash}
-                          </Text>
-                          <AntButton
-                            type='text'
-                            size='small'
-                            icon={<CopyOutlined />}
-                            onClick={() => copyToClipboard(record.hash)}
-                          />
-                        </Space>
-                      </Col>
-                      <Col span={12}>
-                        <Text strong>블록 높이:</Text> {record.block || 'N/A'}
-                      </Col>
-                      <Col span={12}>
-                        <Text strong>확인 수:</Text>{' '}
-                        {record.confirmations || 'N/A'}
-                      </Col>
-                      {record.memo && (
-                        <Col span={24}>
-                          <Text strong>메모:</Text> {record.memo}
-                        </Col>
-                      )}
-                      <Col span={24}>
-                        <Space>
-                          <AntButton
-                            size='small'
-                            icon={<EyeOutlined />}
-                            onClick={() => viewOnExplorer(record.hash)}
-                          >
-                            탐색기에서 보기
-                          </AntButton>
-                          <AntButton
-                            size='small'
-                            icon={<LinkOutlined />}
-                            onClick={() =>
-                              viewAddressOnExplorer(record.address)
-                            }
-                          >
-                            주소 보기
-                          </AntButton>
-                        </Space>
-                      </Col>
-                    </Row>
-                  </div>
-                ),
-                rowExpandable: () => true,
-              }}
-            />
-          )}
-
-          {/* 더 많은 거래 로드 */}
-          {hasMore && (
-            <div style={{ textAlign: 'center', marginTop: '16px' }}>
-              <Button
-                variant='secondary'
-                loading={loading}
-                onClick={loadMoreTransactions}
-              >
-                더 많은 거래 보기
-              </Button>
-            </div>
-          )}
+        {/* 거래 내역 리스트 */}
+        <Card style={{ marginBottom: '24px' }}>
+          <TransactionList
+            transactions={filteredTransactions}
+            loading={loading}
+            hasMore={hasMore}
+            onCopyHash={copyToClipboardHandler}
+            onCopyAddress={copyToClipboardHandler}
+            onViewExplorer={viewExplorerHandler}
+            onViewAddressExplorer={viewAddressExplorerHandler}
+          />
         </Card>
       </div>
     </MainLayout>

@@ -164,9 +164,7 @@ export class TransactionService {
       }
 
       const fee = parseInt(txData.fees) / 1_000_000;
-      const timestamp = new Date(txData.block_time * 1000).toLocaleString(
-        'ko-KR'
-      );
+      const timestamp = txData.block_time; // Unix timestamp를 그대로 저장
 
       return {
         hash: txHash,
@@ -211,7 +209,7 @@ export class TransactionService {
 
       // 날짜 범위 필터
       if (filter.dateRange) {
-        const txDate = new Date(tx.timestamp);
+        const txDate = new Date(tx.timestamp * 1000);
         if (txDate < filter.dateRange.start || txDate > filter.dateRange.end) {
           return false;
         }

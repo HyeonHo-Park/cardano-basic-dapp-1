@@ -6,9 +6,9 @@ import {
   CopyOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
-import { Card, Button } from '../../common';
-import { CURRENT_NETWORK } from '../../../utils/constants';
-import { formatAddressForAPI } from '../../../utils/cardano';
+import { Card, Button } from '../../components/common';
+import { CURRENT_NETWORK } from '../../utils/constants';
+import { formatAddressForAPI } from '../../utils/cardano';
 
 const { Text } = Typography;
 
@@ -54,6 +54,7 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
 
     convertAddress();
   }, [address]);
+
   return (
     <Space direction='vertical' style={{ width: '100%' }} size='large'>
       {/* 지갑 정보 헤더 */}
@@ -171,5 +172,3 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
     </Space>
   );
 };
-
-export default WalletInfo;
