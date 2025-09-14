@@ -5,11 +5,11 @@
 ```mermaid
 sequenceDiagram
     participant User
-    participant HistoryPage
-    participant useTransaction
-    participant TransactionService
+    participant HistoryPage[features/history/pages]
+    participant useTransaction[features/history/hooks]
+    participant TransactionService[features/history/services]
     participant Blockfrost
-    participant CardanoUtils
+    participant CardanoUtils[shared/utils]
 
     User->>HistoryPage: 페이지 접속
     HistoryPage->>useTransaction: fetchTransactions()
@@ -38,10 +38,10 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    HistoryPage[HistoryPage - index.tsx] --> TransactionList[TransactionList.tsx]
-    HistoryPage --> TransactionFilter[TransactionFilter.tsx]
+    HistoryPage[features/history/pages/HistoryPage.tsx] --> TransactionList[features/history/components/TransactionList.tsx]
+    HistoryPage --> TransactionFilter[features/history/components/TransactionFilter.tsx]
 
-    TransactionList --> TransactionCard[TransactionCard.tsx]
+    TransactionList --> TransactionCard[features/history/components/TransactionCard.tsx]
     TransactionFilter --> FilterOptions[필터 옵션]
 
     TransactionCard --> TxDetails[거래 상세 정보]

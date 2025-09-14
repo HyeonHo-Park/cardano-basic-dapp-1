@@ -4,22 +4,22 @@
 
 ```mermaid
 flowchart TD
-    subgraph "User Interface"
-        WP[WalletPage]
-        SP[SendPage]
-        HP[HistoryPage]
+    subgraph "Feature Modules"
+        WF[features/wallet]
+        SF[features/send]
+        HF[features/history]
     end
 
-    subgraph "State Management"
-        UW[useWallet Hook]
-        UT[useTransaction Hook]
+    subgraph "Shared Hooks"
+        UW[shared/hooks/useWallet]
+        UT[shared/hooks/useTransaction]
         LS[Local State - useState]
     end
 
-    subgraph "Service Layer"
-        WS[WalletService]
-        SS[SendService]
-        TS[TransactionService]
+    subgraph "Feature Services"
+        WS[features/wallet/services]
+        SS[features/send/services]
+        TS[features/history/services]
     end
 
     subgraph "External Data Sources"
@@ -28,10 +28,10 @@ flowchart TD
         CSL[Cardano Serialization Lib]
     end
 
-    WP <--> UW
-    SP <--> UW
-    SP --> SS
-    HP <--> UT
+    WF <--> UW
+    SF <--> UW
+    SF --> SS
+    HF <--> UT
 
     UW <--> WS
     UT <--> TS
@@ -117,14 +117,14 @@ flowchart TD
     UserMessage4 --> UI
 ```
 
-## React Hook 기반 상태 관리
+## Feature-based React Hook 상태 관리
 
 ```mermaid
 flowchart TD
-    Component[React Component] --> UseHook[Custom Hook]
+    Component[Feature Component] --> UseHook[Feature/Shared Hook]
     UseHook --> UseState[useState]
     UseHook --> UseEffect[useEffect]
-    UseHook --> Service[Service Class]
+    UseHook --> Service[Feature Service]
 
     UseState --> LocalState[Local State]
     UseEffect --> SideEffects[Side Effects]

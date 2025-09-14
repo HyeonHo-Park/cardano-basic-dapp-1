@@ -103,26 +103,28 @@ classDiagram
 
 ## 상수 정의
 
+### shared/utils/constants
+
 ```typescript
 // 네트워크 설정
-CARDANO_NETWORKS = {
+export const CARDANO_NETWORKS = {
   MAINNET: { id: 1, name: 'mainnet', displayName: 'Mainnet' },
   PREVIEW: { id: 0, name: 'preview', displayName: 'Preview Testnet' },
   PREPROD: { id: 0, name: 'preprod', displayName: 'Preprod Testnet' },
 };
 
 // 현재 네트워크
-CURRENT_NETWORK = CARDANO_NETWORKS.PREVIEW;
+export const CURRENT_NETWORK = CARDANO_NETWORKS.PREVIEW;
 
 // 지갑 목록
-SUPPORTED_WALLETS = [
+export const SUPPORTED_WALLETS = [
   { key: 'lace', name: 'Lace', icon: '/wallets/lace.svg' },
   { key: 'nami', name: 'Nami', icon: '/wallets/nami.svg' },
   { key: 'eternl', name: 'Eternl', icon: '/wallets/eternl.svg' },
 ];
 
 // 트랜잭션 설정
-TRANSACTION_CONFIG = {
+export const TRANSACTION_CONFIG = {
   MIN_UTXO_VALUE: 1_000_000, // 1 ADA in lovelace
   DEFAULT_FEE_ESTIMATE: 0.2, // ADA
   MAX_TX_SIZE: 16384,

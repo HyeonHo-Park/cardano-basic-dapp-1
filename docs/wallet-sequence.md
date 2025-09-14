@@ -5,9 +5,9 @@
 ```mermaid
 sequenceDiagram
     participant User
-    participant WalletPage
-    participant useWallet
-    participant WalletService
+    participant WalletPage[features/wallet/pages]
+    participant useWallet[shared/hooks]
+    participant WalletService[features/wallet/services]
     participant Browser
     participant WalletExtension
 

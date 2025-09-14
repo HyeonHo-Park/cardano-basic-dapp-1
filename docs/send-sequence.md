@@ -5,10 +5,10 @@
 ```mermaid
 sequenceDiagram
     participant User
-    participant SendPage
-    participant SendService
-    participant WalletInstance
-    participant CSL
+    participant SendPage[features/send/pages]
+    participant SendService[features/send/services]
+    participant WalletInstance[shared/hooks/useWallet]
+    participant CSL[Cardano Serialization Lib]
     participant Network
 
     User->>SendPage: 송금 정보 입력
@@ -50,9 +50,9 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    SendPage[SendPage - index.tsx] --> SendForm[SendForm.tsx]
-    SendForm --> AddressInput[AddressInput.tsx]
-    SendForm --> AmountInput[AmountInput.tsx]
+    SendPage[features/send/pages/SendPage.tsx] --> SendForm[features/send/components/SendForm.tsx]
+    SendForm --> AddressInput[features/send/components/AddressInput.tsx]
+    SendForm --> AmountInput[features/send/components/AmountInput.tsx]
 
     AddressInput --> Validation1[주소 유효성 검증]
     AmountInput --> Validation2[금액 유효성 검증]
@@ -62,7 +62,7 @@ flowchart TD
     Validation2 --> FormSubmit
     MaxButton --> FormSubmit
 
-    FormSubmit --> SendService[SendService.sendTransaction]
+    FormSubmit --> SendService[features/send/services/sendService]
 ```
 
 ## 에러 처리 플로우
