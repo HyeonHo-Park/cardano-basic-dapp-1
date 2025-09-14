@@ -106,15 +106,15 @@ export default function HistoryPage() {
   if (!isConnected) {
     return (
       <MainLayout>
-        <div className='container'>
-          <Row justify='center' className='connectSection'>
+        <div className='history-container'>
+          <Row justify='center' className='history-connectSection'>
             <Col xs={24} sm={16} md={12} lg={8}>
-              <Card className='connectCard'>
-                <WalletOutlined className='connectIcon' />
-                <Title level={3} className='connectTitle'>
+              <Card className='history-connectCard'>
+                <WalletOutlined className='history-connectIcon' />
+                <Title level={3} className='history-connectTitle'>
                   지갑을 연결해주세요
                 </Title>
-                <Text className='connectDescription'>
+                <Text className='history-connectDescription'>
                   거래내역을 조회하려면 먼저 지갑을 연결해야 합니다.
                 </Text>
                 <Button onClick={connectWalletHandler}>지갑 연결하기</Button>
@@ -128,14 +128,14 @@ export default function HistoryPage() {
 
   return (
     <MainLayout>
-      <div className='container'>
+      <div className='history-container'>
         {/* 페이지 헤더 */}
-        <Card className='headerCard'>
+        <Card className='history-headerCard'>
           <Row align='middle' justify='space-between'>
             <Col>
               <Space align='center'>
-                <HistoryOutlined className='headerIcon' />
-                <Title level={2} className='headerTitle'>
+                <HistoryOutlined className='history-headerIcon' />
+                <Title level={2} className='history-headerTitle'>
                   거래 내역
                 </Title>
               </Space>
@@ -154,10 +154,10 @@ export default function HistoryPage() {
         </Card>
 
         {/* 통계 카드 */}
-        <Row gutter={[16, 16]} className='statsRow'>
+        <Row gutter={[16, 16]} className='history-statsRow'>
           <Col xs={24} sm={12} md={6} xl={6}>
             <Card
-              className='statCard statCardTotal'
+              className='history-statCard statCardTotal'
               styles={{
                 body: {
                   padding: '16px',
@@ -168,18 +168,18 @@ export default function HistoryPage() {
                 },
               }}
             >
-              <div className='statContent'>
-                <div className='statLabel'>총 거래</div>
-                <div className='statValue'>
+              <div className='history-statContent'>
+                <div className='history-statLabel'>총 거래</div>
+                <div className='history-statValue'>
                   {stats.totalTransactions}
-                  <span className='statUnit'>건</span>
+                  <span className='history-statUnit'>건</span>
                 </div>
               </div>
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} xl={6}>
             <Card
-              className='statCard statCardSent'
+              className='history-statCard statCardSent'
               styles={{
                 body: {
                   padding: '16px',
@@ -190,18 +190,18 @@ export default function HistoryPage() {
                 },
               }}
             >
-              <div className='statContent'>
-                <div className='statLabel'>총 송금</div>
-                <div className='statValueMedium'>
+              <div className='history-statContent'>
+                <div className='history-statLabel'>총 송금</div>
+                <div className='history-statValueMedium'>
                   {formatSmartADA(stats.totalSent)}
-                  <span className='statUnitSmall'>ADA</span>
+                  <span className='history-statUnitSmall'>ADA</span>
                 </div>
               </div>
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} xl={6}>
             <Card
-              className='statCard statCardReceived'
+              className='history-statCard statCardReceived'
               styles={{
                 body: {
                   padding: '16px',
@@ -212,18 +212,18 @@ export default function HistoryPage() {
                 },
               }}
             >
-              <div className='statContent'>
-                <div className='statLabel'>총 수신</div>
-                <div className='statValueMedium'>
+              <div className='history-statContent'>
+                <div className='history-statLabel'>총 수신</div>
+                <div className='history-statValueMedium'>
                   {formatSmartADA(stats.totalReceived)}
-                  <span className='statUnitSmall'>ADA</span>
+                  <span className='history-statUnitSmall'>ADA</span>
                 </div>
               </div>
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} xl={6}>
             <Card
-              className='statCard statCardFees'
+              className='history-statCard statCardFees'
               styles={{
                 body: {
                   padding: '16px',
@@ -234,11 +234,11 @@ export default function HistoryPage() {
                 },
               }}
             >
-              <div className='statContent'>
-                <div className='statLabel'>총 수수료</div>
-                <div className='statValueMedium'>
+              <div className='history-statContent'>
+                <div className='history-statLabel'>총 수수료</div>
+                <div className='history-statValueMedium'>
                   {formatSmartADA(stats.totalFees)}
-                  <span className='statUnitSmall'>ADA</span>
+                  <span className='history-statUnitSmall'>ADA</span>
                 </div>
               </div>
             </Card>
@@ -254,13 +254,13 @@ export default function HistoryPage() {
             showIcon
             closable
             onClose={clearError}
-            className='errorAlert'
+            className='history-errorAlert'
             icon={<ExclamationCircleOutlined />}
           />
         )}
 
         {/* 필터 */}
-        <Card className='filterCard'>
+        <Card className='history-filterCard'>
           <TransactionFilter
             searchText={searchText}
             filterType={filterType}
@@ -271,7 +271,7 @@ export default function HistoryPage() {
         </Card>
 
         {/* 거래 내역 리스트 */}
-        <Card className='listCard'>
+        <Card className='history-listCard'>
           <TransactionList
             transactions={filteredTransactions}
             loading={loading}

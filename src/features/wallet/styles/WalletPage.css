@@ -1,22 +1,52 @@
-/* 지갑 페이지 스타일 */
-.container {
+/* 지갑 페이지 스타일 - tweakcn 테마 적용 */
+.wallet-container {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.pageTitle {
+.wallet-pageTitle {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
-.connectSection {
-  margin-bottom: 24px;
+.wallet-pageTitle .anticon {
+  color: var(--primary);
+  margin-right: 0.5rem;
 }
 
-.walletSection {
-  margin-bottom: 24px;
+.wallet-alertInfo {
+  margin-bottom: 1.5rem;
+  background-color: var(--muted);
+  border-color: var(--muted);
 }
 
-.balanceCard {
-  margin-bottom: 24px;
+.wallet-alertWarning {
+  margin-bottom: 1.5rem;
+  background-color: var(--muted);
+  border-color: var(--muted);
+}
+
+.wallet-connectSection {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-page-alert {
+  margin-bottom: 24px !important;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .wallet-container {
+    padding: 0 0.75rem;
+  }
+
+  .wallet-pageTitle {
+    font-size: 1.5rem;
+  }
 }

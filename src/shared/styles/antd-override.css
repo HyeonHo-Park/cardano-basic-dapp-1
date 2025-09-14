@@ -1,0 +1,321 @@
+/* Ant Design CSS Variable Overrides */
+/* 이 파일은 Ant Design 컴포넌트가 theme.css의 변수를 사용하도록 강제합니다 */
+
+/* Button */
+.ant-btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary) !important;
+  opacity: 0.9;
+}
+
+.ant-btn-default {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+/* Input */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover,
+.ant-select-selector:hover {
+  border-color: var(--primary) !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused .ant-select-selector {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px var(--muted) !important;
+}
+
+/* Card */
+.ant-card {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--card-foreground) !important;
+}
+
+/* Layout */
+.ant-layout {
+  background-color: var(--background) !important;
+}
+
+.ant-layout-sider {
+  background-color: var(--card) !important;
+}
+
+.ant-layout-header {
+  background-color: var(--card) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Menu */
+.ant-menu {
+  background-color: transparent !important;
+  color: var(--foreground) !important;
+}
+
+.ant-menu-item {
+  color: var(--muted-foreground) !important;
+}
+
+.ant-menu-item:hover {
+  color: var(--primary) !important;
+  background-color: var(--muted) !important;
+}
+
+.ant-menu-item-selected {
+  color: var(--primary) !important;
+  background-color: var(--accent) !important;
+}
+
+.ant-menu-title-content {
+  color: inherit !important;
+}
+
+.ant-menu-item .anticon {
+  color: inherit !important;
+}
+
+/* Modal */
+.ant-modal-content {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+}
+
+.ant-modal-header {
+  background-color: var(--card) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Select Dropdown */
+.ant-select-dropdown {
+  background-color: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.ant-select-item {
+  color: var(--popover-foreground) !important;
+}
+
+.ant-select-item-option-active {
+  background-color: var(--muted) !important;
+}
+
+.ant-select-item-option-selected {
+  background-color: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+}
+
+/* Typography */
+.ant-typography {
+  color: var(--foreground) !important;
+}
+
+/* Alert */
+.ant-alert-info {
+  background-color: var(--card) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-alert-success {
+  background-color: var(--card) !important;
+  border-color: var(--success) !important;
+}
+
+.ant-alert-warning {
+  background-color: var(--card) !important;
+  border-color: var(--warning) !important;
+}
+
+.ant-alert-error {
+  background-color: var(--card) !important;
+  border-color: var(--destructive) !important;
+}
+
+/* Statistic */
+.ant-statistic-title {
+  color: var(--muted-foreground) !important;
+}
+
+.ant-statistic-content {
+  color: var(--foreground) !important;
+}
+
+.ant-statistic-content-prefix {
+  color: inherit !important;
+}
+
+.ant-statistic-content-value {
+  color: inherit !important;
+}
+
+/* Form */
+.ant-form-item-label > label {
+  color: var(--foreground) !important;
+}
+
+/* Checkbox & Radio */
+.ant-checkbox-wrapper,
+.ant-radio-wrapper {
+  color: var(--foreground) !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-radio-checked .ant-radio-inner {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Icon */
+.anticon {
+  color: currentColor !important;
+}
+
+/* Typography */
+h1.ant-typography,
+h2.ant-typography,
+h3.ant-typography,
+h4.ant-typography,
+h5.ant-typography {
+  color: var(--foreground) !important;
+  margin: 0 !important;
+}
+
+.ant-typography.ant-typography-secondary {
+  color: var(--muted-foreground) !important;
+}
+
+/* Layout Content */
+.ant-layout-content {
+  background-color: var(--background) !important;
+}
+
+/* Message */
+.ant-message .ant-message-notice-content {
+  background-color: var(--popover) !important;
+  color: var(--popover-foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Tooltip */
+.ant-tooltip-inner {
+  background-color: var(--popover) !important;
+  color: var(--popover-foreground) !important;
+}
+
+.ant-tooltip-arrow-content {
+  background-color: var(--popover) !important;
+}
+
+/* Divider */
+.ant-divider {
+  border-color: var(--border) !important;
+}
+
+/* Tag */
+.ant-tag {
+  background-color: var(--muted) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+/* Pagination */
+.ant-pagination-item {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+.ant-pagination-item a {
+  color: var(--foreground) !important;
+}
+
+.ant-pagination-item:hover {
+  border-color: var(--primary) !important;
+}
+
+.ant-pagination-item:hover a {
+  color: var(--primary) !important;
+}
+
+.ant-pagination-item-active {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--primary-foreground) !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+.ant-pagination-disabled .ant-pagination-item-link {
+  color: var(--muted-foreground) !important;
+  cursor: not-allowed !important;
+}
+
+/* Table */
+.ant-table {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--card) !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: var(--muted) !important;
+}
+
+/* Table Expand Button */
+.ant-table-row-expand-icon {
+  color: var(--muted-foreground) !important;
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+.ant-table-row-expand-icon:hover {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-table-row-expand-icon:focus {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-table-row-expand-icon-expanded {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}

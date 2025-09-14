@@ -2,7 +2,7 @@
 .emptyState {
   text-align: center;
   padding: 60px 20px;
-  color: #8c8c8c;
+  color: var(--muted-foreground);
 }
 
 .emptyIcon {
@@ -18,4 +18,23 @@
 .hashText {
   font-size: 12px;
   font-family: monospace;
+}
+
+.amountPositive {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+.amountNegative {
+  color: var(--destructive) !important;
+  font-weight: 600;
+}
+
+/* 테이블 내 색상 강제 적용 */
+.ant-table-tbody .amountPositive {
+  color: var(--primary) !important;
+}
+
+.ant-table-tbody .amountNegative {
+  color: var(--destructive) !important;
 }

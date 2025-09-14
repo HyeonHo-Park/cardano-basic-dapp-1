@@ -93,15 +93,15 @@ export default function WalletPage() {
     return (
       <App>
         <MainLayout>
-          <div className='container'>
-            <Title level={2} className='pageTitle'>
+          <div className='wallet-container'>
+            <Title level={2} className='wallet-pageTitle'>
               <WalletOutlined /> 지갑 관리
             </Title>
             <Alert
               message='지갑 정보를 불러오는 중...'
               type='info'
               showIcon
-              className='connectSection'
+              className='wallet-connectSection'
             />
           </div>
         </MainLayout>
@@ -112,8 +112,8 @@ export default function WalletPage() {
   return (
     <App>
       <MainLayout>
-        <div className='container'>
-          <Title level={2} className='pageTitle'>
+        <div className='wallet-container'>
+          <Title level={2} className='wallet-pageTitle'>
             <WalletOutlined /> 지갑 관리
           </Title>
 
@@ -126,7 +126,7 @@ export default function WalletPage() {
               showIcon
               closable
               onClose={clearError}
-              className='connectSection'
+              className='wallet-connectSection'
             />
           )}
 
@@ -138,7 +138,7 @@ export default function WalletPage() {
                 description='카르다노 dApp을 사용하기 위해서는 Lace 지갑을 연결해야 합니다. IOG에서 개발한 공식 지갑입니다.'
                 type='info'
                 showIcon
-                style={{ marginBottom: '24px' }}
+                className='wallet-page-alert'
               />
 
               <WalletConnect
@@ -156,7 +156,7 @@ export default function WalletPage() {
                 description={`${connectedWallet} 지갑이 연결되어 있습니다.`}
                 type='success'
                 showIcon
-                style={{ marginBottom: '24px' }}
+                className='wallet-page-alert'
               />
 
               <WalletInfo

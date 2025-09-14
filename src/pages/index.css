@@ -1,76 +1,138 @@
-/* 홈페이지 스타일 */
-.container {
+/* 홈페이지 스타일 - tweakcn 테마 적용 */
+.home-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.welcomeCard {
-  margin-bottom: 24px;
+.home-welcomeCard {
+  margin-bottom: 2rem;
   text-align: center;
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
-.welcomeTitle {
-  margin-bottom: 16px;
+.home-welcomeTitle {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
-.welcomeText {
-  font-size: 16px;
+.home-welcomeText {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
 }
 
-.statsRow {
-  margin-bottom: 24px;
+.home-statsRow {
+  margin-bottom: 2rem;
 }
 
-.actionRow {
-  margin-bottom: 24px;
+.home-actionRow {
+  margin-bottom: 2rem;
 }
 
-.actionCard {
+.home-actionCard {
   text-align: center;
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
-.actionIcon {
-  font-size: 48px;
-  margin-bottom: 16px;
+.home-actionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
 }
 
-.actionIconWallet {
-  color: #8b5cf6;
+.home-actionIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.actionIconSend {
-  color: #10b981;
+.home-actionIconWallet {
+  color: var(--primary);
 }
 
-.actionIconHistory {
-  color: #faad14;
+.home-actionIconSend {
+  color: var(--success);
 }
 
-.actionTitle {
-  margin-bottom: 8px;
+.home-actionIconHistory {
+  color: var(--warning);
 }
 
-.actionDescription {
+.home-actionTitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.home-actionDescription {
   margin: 0;
-  color: #a6a6a6;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
 }
 
-.statisticValuePrimary {
-  color: #8b5cf6;
+/* Statistic 컴포넌트의 value 스타일 */
+.home-statisticValuePrimary .ant-statistic-content-value {
+  color: var(--primary);
 }
 
-.statisticValueSuccess {
-  color: #10b981;
+.home-statisticValueSuccess .ant-statistic-content-value {
+  color: var(--success);
 }
 
-.statisticValueWarning {
-  color: #faad14;
+.home-statisticValueWarning .ant-statistic-content-value {
+  color: var(--warning);
 }
 
-.statisticValueInfo {
-  color: #722ed1;
+.home-statisticValueInfo .ant-statistic-content-value {
+  color: var(--chart-4);
+}
+
+/* 통계 카드 스타일 */
+.home-statsRow .ant-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.home-statsRow .ant-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.home-statsRow .ant-statistic-title {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0 0.75rem;
+  }
+
+  .home-actionCard {
+    height: 180px;
+  }
+
+  .home-actionIcon {
+    font-size: 2.5rem;
+  }
 }

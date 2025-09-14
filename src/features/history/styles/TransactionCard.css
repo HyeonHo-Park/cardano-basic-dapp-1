@@ -1,66 +1,118 @@
-/* 거래 카드 스타일 */
+/* 거래 카드 스타일 - tweakcn 테마 적용 */
 .transactionCard {
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #d9d9d9;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card);
   transition: all 0.3s ease;
 }
 
 .transactionCard:hover {
-  border-color: #8b5cf6;
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .cardTitle {
-  color: #343a40;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
 .amountPositive {
-  color: #10b981;
-  font-weight: bold;
+  color: var(--success);
+  font-weight: 600;
 }
 
 .amountNegative {
-  color: #ff4d4f;
-  font-weight: bold;
+  color: var(--destructive);
+  font-weight: 600;
 }
 
-.cardMeta {
-  color: #6c757d;
+.labelText {
+  color: var(--muted-foreground);
 }
 
-.cardLabel {
-  color: #343a40;
+.valueText {
+  color: var(--foreground);
 }
 
-.cardValue {
-  color: #6c757d;
+.secondaryText {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
 }
 
-.actionButton {
-  border: none;
-  background: transparent;
-  color: #8b5cf6;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+.linkText {
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
 }
 
-.actionButton:hover {
-  background-color: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
+.linkText:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
-.explorerButton {
-  border: none;
-  background: transparent;
-  color: #10b981;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+.hashLinkText {
+  color: var(--primary);
+  font-family: monospace;
+  font-size: 0.75rem;
 }
 
-.explorerButton:hover {
-  background-color: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+.positiveBadge {
+  color: var(--success);
+  background-color: var(--muted);
+  border: 1px solid var(--muted);
+  padding: 2px 8px;
+  border-radius: calc(var(--radius) * 0.5);
+  font-size: 0.75rem;
+}
+
+.positiveAmount {
+  color: var(--success);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.transaction-card-hash {
+  font-size: 12px !important;
+  word-break: break-all !important;
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  padding: 4px 8px !important;
+  border-radius: calc(var(--radius) * 0.5) !important;
+}
+
+.transaction-card-copy-button {
+  color: var(--muted-foreground) !important;
+}
+
+.transaction-card-label {
+  color: var(--foreground) !important;
+}
+
+.transaction-card-value {
+  color: var(--muted-foreground) !important;
+}
+
+.transaction-card-explorer-button {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: none !important;
+}
+
+.transaction-card-explorer-button:hover {
+  background-color: var(--primary) !important;
+  opacity: 0.9;
+}
+
+.transaction-card-address-button {
+  background-color: var(--secondary) !important;
+  color: var(--secondary-foreground) !important;
+  border: none !important;
+}
+
+.transaction-card-address-button:hover {
+  background-color: var(--secondary) !important;
+  opacity: 0.9;
 }

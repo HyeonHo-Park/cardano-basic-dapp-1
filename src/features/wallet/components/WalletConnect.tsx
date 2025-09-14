@@ -34,52 +34,39 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
 
   return (
     <Card title='Lace 지갑 연결' padding='large'>
-      <div className='container'>
+      <div className='wallet-connect-container'>
         <Card
           variant={wallet.isInstalled ? 'interactive' : 'default'}
-          className='walletCard'
-          style={{
-            opacity: wallet.isInstalled ? 1 : 0.6,
-            cursor: wallet.isInstalled ? 'pointer' : 'not-allowed',
-          }}
+          className={`wallet-connect-card ${!wallet.isInstalled ? 'wallet-card-disabled' : ''}`}
           onClick={() => wallet.isInstalled && onConnect(wallet.key)}
         >
-          <Space direction='vertical' size='large' className='walletSpace'>
-            <div className='walletIcon'>{wallet.icon}</div>
+          <Space
+            direction='vertical'
+            size='large'
+            className='wallet-connect-space'
+          >
+            <div className='wallet-connect-icon'>{wallet.icon}</div>
 
-            <Title level={3} className='walletTitle'>
+            <Title level={3} className='wallet-connect-title'>
               {wallet.name}
             </Title>
 
             <div>
               {wallet.isInstalled ? (
-                <Tag color='green' className='statusBadgeInstalled'>
-                  설치됨
-                </Tag>
+                <Tag className='wallet-status-installed'>설치됨</Tag>
               ) : (
-                <Tag color='red' className='statusBadgeInstalled'>
-                  미설치
-                </Tag>
+                <Tag className='wallet-status-not-installed'>미설치</Tag>
               )}
             </div>
 
-            <p
-              style={{
-                fontSize: '14px',
-                color: '#666',
-                margin: 0,
-                lineHeight: '1.5',
-              }}
-            >
-              {wallet.description}
-            </p>
+            <p className='wallet-connect-description'>{wallet.description}</p>
 
             {isConnecting && connectingWallet === wallet.key ? (
               <Button
                 loading
                 variant='primary'
                 size='large'
-                style={{ width: '100%' }}
+                className='wallet-connect-button'
               >
                 연결 중...
               </Button>
@@ -87,7 +74,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
               <Button
                 variant='primary'
                 size='large'
-                style={{ width: '100%' }}
+                className='wallet-connect-button'
                 disabled={isConnecting}
               >
                 Lace 지갑 연결하기
@@ -96,7 +83,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({
               <Button
                 variant='secondary'
                 size='large'
-                style={{ width: '100%' }}
+                className='wallet-connect-button'
                 onClick={e => {
                   e.stopPropagation();
                   window.open(wallet.downloadUrl, '_blank');

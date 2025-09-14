@@ -49,18 +49,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
           </Text>
           <br />
           <Space>
-            <Text
-              code
-              style={{
-                fontSize: '12px',
-                wordBreak: 'break-all',
-                backgroundColor: '#ffffff',
-                color: '#495057',
-                border: '1px solid #dee2e6',
-                padding: '4px 8px',
-                borderRadius: '4px',
-              }}
-            >
+            <Text code className='transaction-card-hash'>
               {transaction.hash}
             </Text>
             <Tooltip title='클립보드에 복사'>
@@ -69,39 +58,41 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
                 size='small'
                 icon={<CopyOutlined />}
                 onClick={() => onCopyHash(transaction.hash)}
-                style={{ color: '#6c757d' }}
+                className='transaction-card-copy-button'
               />
             </Tooltip>
           </Space>
         </Col>
         <Col span={12}>
-          <Text strong style={{ color: '#343a40' }}>
+          <Text strong className='transaction-card-label'>
             블록 높이:
           </Text>{' '}
-          <Text style={{ color: '#6c757d' }}>{transaction.block || 'N/A'}</Text>
+          <Text className='transaction-card-value'>
+            {transaction.block || 'N/A'}
+          </Text>
         </Col>
         <Col span={12}>
-          <Text strong style={{ color: '#343a40' }}>
+          <Text strong className='transaction-card-label'>
             확인 수:
           </Text>{' '}
-          <Text style={{ color: '#6c757d' }}>
+          <Text className='transaction-card-value'>
             {transaction.confirmations || 'N/A'}
           </Text>
         </Col>
         <Col span={24}>
-          <Text strong style={{ color: '#343a40' }}>
+          <Text strong className='transaction-card-label'>
             거래 시간:
           </Text>{' '}
-          <Text style={{ color: '#6c757d' }}>
+          <Text className='transaction-card-value'>
             {formatTimestamp(transaction.timestamp)}
           </Text>
         </Col>
         {transaction.memo && (
           <Col span={24}>
-            <Text strong style={{ color: '#343a40' }}>
+            <Text strong className='transaction-card-label'>
               메모:
             </Text>{' '}
-            <Text style={{ color: '#6c757d' }}>{transaction.memo}</Text>
+            <Text className='transaction-card-value'>{transaction.memo}</Text>
           </Col>
         )}
         <Col span={24}>
@@ -110,11 +101,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
               size='small'
               icon={<EyeOutlined />}
               onClick={() => onViewExplorer(transaction.hash)}
-              style={{
-                backgroundColor: '#007bff',
-                color: '#ffffff',
-                border: 'none',
-              }}
+              className='transaction-card-explorer-button'
             >
               탐색기에서 보기
             </Button>
@@ -122,11 +109,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
               size='small'
               icon={<LinkOutlined />}
               onClick={() => onViewAddressExplorer(transaction.address)}
-              style={{
-                backgroundColor: '#6c757d',
-                color: '#ffffff',
-                border: 'none',
-              }}
+              className='transaction-card-address-button'
             >
               주소 보기
             </Button>

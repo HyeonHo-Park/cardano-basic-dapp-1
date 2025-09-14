@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html lang='ko'>
+    <Html lang='ko' className='dark'>
       <Head>
         <link rel='icon' href='/cardano-logo.svg' />
         <link rel='shortcut icon' href='/cardano-logo.svg' />

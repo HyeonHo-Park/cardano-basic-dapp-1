@@ -53,17 +53,17 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <App>
-      <Layout className='layout'>
+      <Layout className='app-layout'>
         <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
-          className='sider'
+          className='app-sider'
         >
-          <div className='logoSection'>
+          <div className='app-logoSection'>
             <Title
               level={4}
-              className={`logoTitle ${collapsed ? 'logoTitleCollapsed' : 'logoTitleExpanded'}`}
+              className={`app-logoTitle ${collapsed ? 'app-logoTitleCollapsed' : 'app-logoTitleExpanded'}`}
             >
               {collapsed ? 'C' : 'Cardano'}
             </Title>
@@ -74,27 +74,27 @@ export default function MainLayout({ children }: MainLayoutProps) {
             selectedKeys={pathname ? [pathname] : []}
             items={menuItems}
             onClick={handleMenuClick}
-            className='menu'
+            className='app-menu'
           />
         </Sider>
 
         <Layout>
-          <Header className='header'>
+          <Header className='app-header'>
             <Space>
               <Button
                 type='text'
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
-                className='menuButton'
+                className='app-menuButton'
               />
 
-              <Title level={4} className='headerTitle'>
+              <Title level={4} className='app-headerTitle'>
                 Cardano dApp Basic - 1
               </Title>
             </Space>
           </Header>
 
-          <Content className='content'>{children}</Content>
+          <Content className='app-content'>{children}</Content>
         </Layout>
       </Layout>
     </App>

@@ -1,49 +1,81 @@
-/* 지갑 연결 컴포넌트 스타일 */
-.container {
-  max-width: 400px;
+/* 지갑 연결 컴포넌트 스타일 - tweakcn 테마 적용 */
+.wallet-connect-container {
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.walletCard {
-  text-align: center;
-  padding: 24px;
-  border-radius: 12px;
+.wallet-connect-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   transition: all 0.3s ease;
+  padding: 2rem;
+  text-align: center;
 }
 
-.walletSpace {
+.wallet-connect-card:hover:not(.wallet-card-disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.wallet-card-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.wallet-connect-space {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.walletIcon {
-  font-size: 64px;
+.wallet-connect-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
 }
 
-.walletTitle {
-  margin: 0;
-}
-
-.statusBadgeInstalled {
-  font-size: 14px;
-  padding: 4px 12px;
-}
-
-.statusBadgeNotInstalled {
-  font-size: 14px;
-  padding: 4px 12px;
-}
-
-.connectButton {
-  width: 100%;
-  height: 48px;
-  font-size: 16px;
+.wallet-connect-title {
+  margin: 0 0 1rem 0 !important;
+  color: var(--foreground);
   font-weight: 600;
 }
 
-.installButton {
-  width: 100%;
+.wallet-status-installed {
+  background-color: var(--muted);
+  border-color: var(--muted);
+  color: var(--success);
 }
 
-.downloadButton {
+.wallet-status-not-installed {
+  background-color: var(--muted);
+  border-color: var(--muted);
+  color: var(--destructive);
+}
+
+.wallet-connect-description {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.wallet-connect-button {
   width: 100%;
+  height: 48px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .wallet-connect-card {
+    padding: 1.5rem;
+  }
+
+  .wallet-connect-icon {
+    font-size: 3rem;
+  }
 }

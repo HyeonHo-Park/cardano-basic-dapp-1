@@ -23,13 +23,13 @@ export default function HomePage() {
 
   return (
     <MainLayout>
-      <div className='container'>
+      <div className='home-container'>
         {/* 환영 섹션 */}
-        <Card className='welcomeCard' padding='large'>
-          <Title level={2} className='welcomeTitle'>
+        <Card className='home-welcomeCard' padding='large'>
+          <Title level={2} className='home-welcomeTitle'>
             Cardano dApp에 오신 것을 환영합니다! 🚀
           </Title>
-          <Paragraph className='welcomeText'>
+          <Paragraph className='home-welcomeText'>
             Blockfrost API와 Lucid를 활용한 Cardano 블록체인 기반 탈중앙화
             애플리케이션입니다.
             <br />
@@ -38,14 +38,14 @@ export default function HomePage() {
         </Card>
 
         {/* 통계 카드들 */}
-        <Row gutter={[16, 16]} className='statsRow'>
+        <Row gutter={[16, 16]} className='home-statsRow'>
           <Col xs={24} sm={12} lg={6}>
             <Card>
               <Statistic
                 title='연결된 지갑'
                 value={0}
                 prefix={<WalletOutlined />}
-                valueStyle={{ color: '#8b5cf6' }}
+                className='home-statisticValuePrimary'
               />
             </Card>
           </Col>
@@ -57,7 +57,7 @@ export default function HomePage() {
                 precision={2}
                 prefix={<DollarOutlined />}
                 suffix='ADA'
-                valueStyle={{ color: '#10b981' }}
+                className='home-statisticValueSuccess'
               />
             </Card>
           </Col>
@@ -67,7 +67,7 @@ export default function HomePage() {
                 title='총 거래'
                 value={0}
                 prefix={<SwapOutlined />}
-                valueStyle={{ color: '#faad14' }}
+                className='home-statisticValueWarning'
               />
             </Card>
           </Col>
@@ -76,25 +76,25 @@ export default function HomePage() {
               <Statistic
                 title='네트워크'
                 value='Preview'
-                valueStyle={{ color: '#722ed1' }}
+                className='home-statisticValueInfo'
               />
             </Card>
           </Col>
         </Row>
 
         {/* 빠른 액션 카드들 */}
-        <Row gutter={[16, 16]} className='actionRow'>
+        <Row gutter={[16, 16]} className='home-actionRow'>
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              className='actionCard'
+              className='home-actionCard'
               onClick={() => handleCardClick('/wallet')}
             >
-              <WalletOutlined className='actionIcon actionIconWallet' />
-              <Title level={4} className='actionTitle'>
+              <WalletOutlined className='home-actionIcon home-actionIconWallet' />
+              <Title level={4} className='home-actionTitle'>
                 지갑 연결
               </Title>
-              <Paragraph className='actionDescription'>
+              <Paragraph className='home-actionDescription'>
                 Lace 카르다노 지갑을 연결하여 시작하세요
               </Paragraph>
             </Card>
@@ -103,14 +103,14 @@ export default function HomePage() {
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              className='actionCard'
+              className='home-actionCard'
               onClick={() => handleCardClick('/send')}
             >
-              <SendOutlined className='actionIcon actionIconSend' />
-              <Title level={4} className='actionTitle'>
+              <SendOutlined className='home-actionIcon home-actionIconSend' />
+              <Title level={4} className='home-actionTitle'>
                 ADA 송금
               </Title>
-              <Paragraph className='actionDescription'>
+              <Paragraph className='home-actionDescription'>
                 다른 카르다노 주소로 ADA를 안전하게 송금하세요
               </Paragraph>
             </Card>
@@ -119,14 +119,14 @@ export default function HomePage() {
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              className='actionCard'
+              className='home-actionCard'
               onClick={() => handleCardClick('/history')}
             >
-              <HistoryOutlined className='actionIcon actionIconHistory' />
-              <Title level={4} className='actionTitle'>
+              <HistoryOutlined className='home-actionIcon home-actionIconHistory' />
+              <Title level={4} className='home-actionTitle'>
                 거래 내역
               </Title>
-              <Paragraph className='actionDescription'>
+              <Paragraph className='home-actionDescription'>
                 과거 모든 거래 내역을 확인하고 추적하세요
               </Paragraph>
             </Card>

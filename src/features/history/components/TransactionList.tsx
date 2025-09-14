@@ -38,16 +38,20 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       dataIndex: 'amount',
       key: 'amount',
       width: 120,
-      render: (amount: string, record: Transaction) => (
-        <span
-          className={
-            record.type === 'sent' ? 'amountNegative' : 'amountPositive'
-          }
-        >
-          {record.type === 'sent' ? '-' : '+'}
-          {amount} ADA
-        </span>
-      ),
+      render: (amount: string, record: Transaction) => {
+        // amount가 이미 음수인 경우 절대값으로 변환
+        const absAmount = Math.abs(parseFloat(amount));
+        return (
+          <span
+            className={
+              record.type === 'sent' ? 'amountNegative' : 'amountPositive'
+            }
+          >
+            {record.type === 'sent' ? '-' : '+'}
+            {absAmount.toFixed(6)} ADA
+          </span>
+        );
+      },
     },
     {
       title: '주소',

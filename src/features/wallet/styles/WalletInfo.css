@@ -1,39 +1,138 @@
-/* 지갑 정보 컴포넌트 스타일 */
-.container {
+/* 지갑 정보 컴포넌트 스타일 - tweakcn 테마 적용 */
+.wallet-info-container {
+  max-width: 800px;
+  margin: 0 auto;
   width: 100%;
 }
 
-.statusIcon {
-  color: #10b981;
+.wallet-info-header-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
 }
 
-.balanceCard {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.wallet-info-status-icon {
+  font-size: 1.25rem;
+  color: var(--success);
+  margin-right: 0.5rem;
+}
+
+.wallet-info-disconnect-button {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
   border: none;
-  border-radius: 12px;
-  color: white;
 }
 
-.addressText {
-  font-size: 11px;
-  color: #8c8c8c;
+.wallet-info-disconnect-button:hover {
+  background-color: var(--muted);
 }
 
-.actionButton {
+/* 통계 카드 */
+.wallet-info-stat-card {
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.wallet-info-balance-value {
+  color: var(--success) !important;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.wallet-info-network-value {
+  color: var(--primary) !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* 주소 섹션 */
+.wallet-info-address-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.wallet-info-address-code {
+  word-break: break-all;
+  font-size: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  display: block;
+  background-color: var(--muted);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  font-family: monospace;
+  line-height: 1.6;
+}
+
+.wallet-info-address-type {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+}
+
+.wallet-info-copy-button {
   width: 100%;
+  margin-top: 0.75rem;
 }
 
-.disconnectButton {
+/* 액션 섹션 */
+.wallet-info-actions-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.wallet-info-action-button {
   width: 100%;
   height: 60px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.refreshButton {
-  width: 100%;
-  height: 60px;
+.wallet-info-action-button-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
 }
 
-.historyButton {
+.wallet-info-action-button-primary:hover {
+  background-color: var(--muted);
+}
+
+.wallet-info-action-button-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.wallet-info-action-button-secondary:hover {
+  background-color: var(--muted);
+}
+
+.wallet-info-space-full {
   width: 100%;
-  height: 60px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .wallet-info-stat-card {
+    margin-bottom: 0.75rem;
+  }
+
+  .wallet-info-action-button {
+    height: 50px;
+    font-size: 0.875rem;
+  }
 }

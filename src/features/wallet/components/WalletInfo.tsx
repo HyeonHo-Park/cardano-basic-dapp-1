@@ -56,17 +56,19 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
   }, [address]);
 
   return (
-    <Space direction='vertical' className='container' size='large'>
+    <Space direction='vertical' className='wallet-info-container' size='large'>
       {/* 지갑 정보 헤더 */}
       <Card
+        className='wallet-info-header-card'
         title={
           <Space>
-            <CheckCircleOutlined className='statusIcon' />
+            <CheckCircleOutlined className='wallet-info-status-icon' />
             연결된 지갑: {walletName}
           </Space>
         }
         extra={
           <Button
+            className='wallet-info-disconnect-button'
             variant='danger'
             icon={<DisconnectOutlined />}
             onClick={onDisconnect}
@@ -77,22 +79,30 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
       >
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12}>
-            <Card variant='default' padding='small'>
+            <Card
+              className='wallet-info-stat-card'
+              variant='default'
+              padding='small'
+            >
               <Statistic
                 title='ADA 잔액'
                 value={balance}
                 suffix='ADA'
                 precision={6}
-                valueStyle={{ color: '#10b981' }}
+                className='wallet-info-balance-value'
               />
             </Card>
           </Col>
           <Col xs={24} sm={12}>
-            <Card variant='default' padding='small'>
+            <Card
+              className='wallet-info-stat-card'
+              variant='default'
+              padding='small'
+            >
               <Statistic
                 title='네트워크'
                 value={CURRENT_NETWORK.displayName}
-                valueStyle={{ color: '#8b5cf6' }}
+                className='wallet-info-network-value'
               />
             </Card>
           </Col>
@@ -100,31 +110,19 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
       </Card>
 
       {/* 지갑 주소 */}
-      <Card title='지갑 주소'>
-        <Space direction='vertical' style={{ width: '100%' }}>
-          <Text
-            code
-            style={{
-              wordBreak: 'break-all',
-              fontSize: '12px',
-              padding: '8px',
-              borderRadius: '4px',
-              display: 'block',
-              backgroundColor: '#f5f5f5',
-              color: '#1f2937',
-              border: '1px solid #e5e7eb',
-            }}
-          >
+      <Card className='wallet-info-address-card' title='지갑 주소'>
+        <Space direction='vertical' className='wallet-info-space-full'>
+          <Text code className='wallet-info-address-code'>
             {isConverting ? '주소 변환 중...' : displayAddress}
           </Text>
-          <Text style={{ fontSize: '11px', color: '#8c8c8c' }}>
+          <Text className='wallet-info-address-type'>
             {displayAddress.startsWith('addr') ? 'Bech32 형식' : '16진수 형식'}
           </Text>
           <Button
+            className='wallet-info-copy-button'
             variant='secondary'
             icon={<CopyOutlined />}
             onClick={onCopyAddress}
-            style={{ width: '100%' }}
             disabled={isConverting}
           >
             주소 복사
@@ -133,13 +131,13 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
       </Card>
 
       {/* 빠른 액션 */}
-      <Card title='빠른 액션'>
+      <Card className='wallet-info-actions-card' title='빠른 액션'>
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={8}>
             <Button
+              className='wallet-info-action-button wallet-info-action-button-primary'
               variant='primary'
               size='large'
-              style={{ width: '100%', height: '60px' }}
               href='/send'
             >
               ADA 송금
@@ -147,9 +145,9 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
           </Col>
           <Col xs={24} sm={8}>
             <Button
-              variant='secondary'
+              className='wallet-info-action-button wallet-info-action-button-primary'
+              variant='primary'
               size='large'
-              style={{ width: '100%', height: '60px' }}
               href='/history'
             >
               거래 내역
@@ -157,10 +155,10 @@ export const WalletInfo: React.FC<WalletInfoProps> = ({
           </Col>
           <Col xs={24} sm={8}>
             <Button
-              variant='secondary'
+              className='wallet-info-action-button wallet-info-action-button-primary'
+              variant='primary'
               icon={<ReloadOutlined />}
               size='large'
-              style={{ width: '100%', height: '60px' }}
               onClick={onRefreshBalance}
               loading={isRefreshing}
             >

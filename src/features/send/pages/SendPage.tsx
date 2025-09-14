@@ -98,10 +98,10 @@ export default function SendPage() {
         content: (
           <div>
             <div>송금이 완료되었습니다!</div>
-            <div className='successMessage'>
+            <div className='send-send-successMessage'>
               트랜잭션 해시: {result.txHash.substring(0, 20)}...
             </div>
-            <div className='feeInfo'>수수료: {result.fee} ADA</div>
+            <div className='send-feeInfo'>수수료: {result.fee} ADA</div>
           </div>
         ),
         duration: 10,
@@ -183,21 +183,21 @@ export default function SendPage() {
     <Form.Provider>
       <App>
         <MainLayout>
-          <div className='container'>
-            <Title level={2} className='pageTitle'>
+          <div className='send-container'>
+            <Title level={2} className='send-pageTitle'>
               <SendOutlined /> ADA 송금
             </Title>
 
             {/* 지갑이 연결되지 않은 경우 */}
             {!isConnected && (
-              <Row justify='center' className='connectSection'>
+              <Row justify='center' className='send-connectSection'>
                 <Col xs={24} sm={20} md={16}>
-                  <Card className='connectCard'>
-                    <DisconnectOutlined className='connectIcon' />
-                    <Title level={3} className='connectTitle'>
+                  <Card className='send-connectCard'>
+                    <DisconnectOutlined className='send-connectIcon' />
+                    <Title level={3} className='send-connectTitle'>
                       지갑을 연결해주세요
                     </Title>
-                    <Text className='connectDescription'>
+                    <Text className='send-connectDescription'>
                       ADA를 송금하려면 먼저 지갑을 연결해야 합니다.
                     </Text>
                     <Button onClick={connectWalletHandler}>
@@ -212,12 +212,12 @@ export default function SendPage() {
             {isConnected && (
               <>
                 {/* 지갑 정보 카드 */}
-                <Card className='balanceCard'>
+                <Card className='send-balanceCard'>
                   <Row gutter={16} align='middle'>
                     <Col span={12}>
                       <Space direction='vertical'>
                         <Text type='secondary'>현재 잔액</Text>
-                        <Title level={3} className='balanceAmount'>
+                        <Title level={3} className='send-balanceAmount'>
                           {balance
                             ? parseFloat(balance).toFixed(6)
                             : '0.000000'}{' '}
@@ -225,8 +225,8 @@ export default function SendPage() {
                         </Title>
                       </Space>
                     </Col>
-                    <Col span={12} className='balanceSection'>
-                      <WalletOutlined className='walletIcon' />
+                    <Col span={12} className='send-balanceSection'>
+                      <WalletOutlined className='send-walletIcon' />
                     </Col>
                   </Row>
                 </Card>
@@ -242,15 +242,19 @@ export default function SendPage() {
                 />
 
                 {/* 주의사항 */}
-                <Card title='⚠️ 주의사항' size='small'>
+                <Card
+                  title='⚠️ 주의사항'
+                  size='small'
+                  className='send-noticeCard'
+                >
                   <Alert
                     message='실제 송금 기능 활성화'
                     description='이제 실제 Cardano 블록체인으로 송금이 진행됩니다. 테스트넷이므로 실제 가치는 없지만 신중하게 진행해주세요.'
                     type='info'
                     showIcon
-                    className='warningCard'
+                    className='send-warningCard'
                   />
-                  <ul className='warningList'>
+                  <ul className='send-warningList'>
                     <li>
                       <strong>송금 후에는 취소할 수 없습니다.</strong>
                     </li>
@@ -277,38 +281,41 @@ export default function SendPage() {
                   width={500}
                 >
                   {formData && (
-                    <Space direction='vertical' style={{ width: '100%' }}>
+                    <Space
+                      direction='vertical'
+                      className='send-page-space-full'
+                    >
                       <Alert
                         message='송금 정보를 다시 한 번 확인해주세요'
                         type='warning'
                         showIcon
                       />
 
-                      <div className='confirmSection'>
-                        <Row className='confirmRow'>
+                      <div className='send-confirmSection'>
+                        <Row className='send-confirmRow'>
                           <Col span={8}>
                             <Text strong>수신자:</Text>
                           </Col>
                           <Col span={16}>
-                            <Text code className='confirmAddress'>
+                            <Text code className='send-confirmAddress'>
                               {formData.recipientAddress?.slice(0, 20)}...
                               {formData.recipientAddress?.slice(-10)}
                             </Text>
                           </Col>
                         </Row>
 
-                        <Row className='confirmRow'>
+                        <Row className='send-confirmRow'>
                           <Col span={8}>
                             <Text strong>금액:</Text>
                           </Col>
                           <Col span={16}>
-                            <Text className='confirmAmount'>
+                            <Text className='send-confirmAmount'>
                               {Number(formData.amount).toFixed(6)} ADA
                             </Text>
                           </Col>
                         </Row>
 
-                        <Row className='confirmRow'>
+                        <Row className='send-confirmRow'>
                           <Col span={8}>
                             <Text strong>수수료:</Text>
                           </Col>
@@ -317,12 +324,12 @@ export default function SendPage() {
                           </Col>
                         </Row>
 
-                        <Row className='confirmRow'>
+                        <Row className='send-confirmRow'>
                           <Col span={8}>
                             <Text strong>총 금액:</Text>
                           </Col>
                           <Col span={16}>
-                            <Text className='confirmTotal'>
+                            <Text className='send-confirmTotal'>
                               {(Number(formData.amount) + estimatedFee).toFixed(
                                 6
                               )}{' '}

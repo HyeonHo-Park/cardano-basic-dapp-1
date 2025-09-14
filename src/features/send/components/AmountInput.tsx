@@ -27,18 +27,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         <div className='inputWrapper'>
           <span className='inputHeader'>송금 금액 (ADA)</span>
           {hasBalance && (
-            <span
-              style={{
-                fontSize: '12px',
-                color: '#8c8c8c',
-                fontWeight: 'normal',
-                marginLeft: '8px',
-                whiteSpace: 'nowrap',
-                backgroundColor: '#f0f2f5',
-                padding: '2px 8px',
-                borderRadius: '4px',
-              }}
-            >
+            <span className='amount-input-max-badge'>
               최대: {maxAvailable.toFixed(6)} ADA
             </span>
           )}

@@ -1,124 +1,183 @@
-/* 거래내역 페이지 스타일 */
-.container {
-  padding: 24px;
+/* 거래내역 페이지 스타일 - tweakcn 테마 적용 */
+.history-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.connectSection {
+.history-connectSection {
   min-height: 60vh;
   align-items: center;
 }
 
-.connectCard {
+.history-connectCard {
   text-align: center;
-  padding: 40px 20px;
+  padding: 3rem 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
 }
 
-.connectIcon {
-  font-size: 64px;
-  color: #faad14;
-  margin-bottom: 24px;
+.history-connectIcon {
+  font-size: 4rem;
+  color: var(--warning);
+  margin-bottom: 1.5rem;
 }
 
-.connectTitle {
-  margin-bottom: 16px;
+.history-connectTitle {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
-.connectDescription {
-  margin-bottom: 24px;
+.history-connectDescription {
   display: block;
-  color: #8c8c8c;
+  color: var(--muted-foreground);
+  line-height: 1.6;
 }
 
-.headerCard {
-  margin-bottom: 24px;
+.history-headerCard {
+  margin-bottom: 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
-.headerIcon {
-  font-size: 24px;
-  color: #faad14;
+.history-headerIcon {
+  font-size: 2rem;
+  color: var(--warning);
+  margin-right: 0.75rem;
 }
 
-.headerTitle {
+.history-headerTitle {
   margin: 0;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
-.statsRow {
-  margin-bottom: 24px;
+.history-statsRow {
+  margin-bottom: 1.5rem;
 }
 
-.statCard {
+/* 통계 카드 공통 스타일 */
+.history-statCard {
   height: 120px;
-  border: none;
-  border-radius: 12px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.statCardTotal {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.history-statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.statCardSent {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+.history-statCardTotal {
+  border-top: 3px solid var(--primary);
 }
 
-.statCardReceived {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+.history-statCardSent {
+  border-top: 3px solid var(--error);
 }
 
-.statCardFees {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+.history-statCardReceived {
+  border-top: 3px solid var(--success);
 }
 
-.statCardBody {
-  padding: 16px;
+.history-statCardFees {
+  border-top: 3px solid var(--warning);
+}
+
+.history-statContent {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.statContent {
   text-align: center;
-  color: white;
 }
 
-.statLabel {
-  font-size: 12px;
-  opacity: 0.9;
-  margin-bottom: 6px;
+.history-statLabel {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
-.statValue {
-  font-size: clamp(20px, 4vw, 28px);
-  font-weight: bold;
-  line-height: 1;
+.history-statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.25rem;
 }
 
-.statValueMedium {
-  font-size: clamp(16px, 3.5vw, 24px);
-  font-weight: bold;
-  line-height: 1;
+.history-statValueTotal {
+  color: var(--primary);
 }
 
-.statUnit {
-  font-size: clamp(12px, 2.5vw, 16px);
-  margin-left: 4px;
-  opacity: 0.8;
+.history-statValueSent {
+  color: var(--error);
 }
 
-.statUnitSmall {
-  font-size: clamp(10px, 2vw, 14px);
-  margin-left: 4px;
-  opacity: 0.8;
+.history-statValueReceived {
+  color: var(--success);
 }
 
-.filterCard {
-  margin-bottom: 16px;
+.history-statValueFees {
+  color: var(--warning);
 }
 
-.listCard {
-  margin-bottom: 24px;
+.history-statUnit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--muted-foreground);
 }
 
-.errorAlert {
-  margin-bottom: 24px;
+.history-errorAlert {
+  margin-bottom: 1rem;
+}
+
+.history-filterCard {
+  margin-bottom: 1rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.history-listCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 로딩 상태 */
+.history-listCard .ant-spin-container {
+  min-height: 200px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .history-container {
+    padding: 1rem;
+  }
+
+  .history-statCard {
+    height: 100px;
+  }
+
+  .history-statValue {
+    font-size: 1.5rem;
+  }
+
+  .history-headerIcon {
+    font-size: 1.5rem;
+  }
 }
