@@ -1,0 +1,60 @@
+/* 금액 입력 컴포넌트 스타일 */
+.inputWrapper {
+  border: 2px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.inputWrapper:hover {
+  border-color: #8b5cf6;
+}
+
+.inputWrapper:focus-within {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+}
+
+.inputHeader {
+  flex: 1;
+}
+
+.inputLabel {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.maxButton {
+  font-size: 12px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.inputField {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  padding: 0;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+.inputField::placeholder {
+  color: #bbb;
+}
+
+.currency {
+  font-size: 18px;
+  color: #8b5cf6;
+  font-weight: 600;
+  margin-left: 8px;
+}

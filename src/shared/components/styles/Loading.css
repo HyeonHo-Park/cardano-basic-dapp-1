@@ -1,0 +1,24 @@
+/* 로딩 컴포넌트 스타일 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.spinContainer {
+  min-height: 200px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.text {
+  margin-top: 8px;
+}

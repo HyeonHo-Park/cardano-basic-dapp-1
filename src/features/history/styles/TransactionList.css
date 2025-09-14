@@ -1,0 +1,21 @@
+/* 거래 리스트 스타일 */
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #8c8c8c;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.loadMoreButton {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.hashText {
+  font-size: 12px;
+  font-family: monospace;
+}

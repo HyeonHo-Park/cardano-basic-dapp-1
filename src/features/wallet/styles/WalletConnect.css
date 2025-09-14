@@ -1,0 +1,49 @@
+/* 지갑 연결 컴포넌트 스타일 */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.walletCard {
+  text-align: center;
+  padding: 24px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.walletSpace {
+  width: 100%;
+}
+
+.walletIcon {
+  font-size: 64px;
+}
+
+.walletTitle {
+  margin: 0;
+}
+
+.statusBadgeInstalled {
+  font-size: 14px;
+  padding: 4px 12px;
+}
+
+.statusBadgeNotInstalled {
+  font-size: 14px;
+  padding: 4px 12px;
+}
+
+.connectButton {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.installButton {
+  width: 100%;
+}
+
+.downloadButton {
+  width: 100%;
+}

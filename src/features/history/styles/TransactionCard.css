@@ -1,0 +1,66 @@
+/* 거래 카드 스타일 */
+.transactionCard {
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.transactionCard:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+}
+
+.cardTitle {
+  color: #343a40;
+}
+
+.amountPositive {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.amountNegative {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.cardMeta {
+  color: #6c757d;
+}
+
+.cardLabel {
+  color: #343a40;
+}
+
+.cardValue {
+  color: #6c757d;
+}
+
+.actionButton {
+  border: none;
+  background: transparent;
+  color: #8b5cf6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.actionButton:hover {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.explorerButton {
+  border: none;
+  background: transparent;
+  color: #10b981;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.explorerButton:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}

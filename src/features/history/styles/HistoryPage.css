@@ -1,0 +1,124 @@
+/* 거래내역 페이지 스타일 */
+.container {
+  padding: 24px;
+}
+
+.connectSection {
+  min-height: 60vh;
+  align-items: center;
+}
+
+.connectCard {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.connectIcon {
+  font-size: 64px;
+  color: #faad14;
+  margin-bottom: 24px;
+}
+
+.connectTitle {
+  margin-bottom: 16px;
+}
+
+.connectDescription {
+  margin-bottom: 24px;
+  display: block;
+  color: #8c8c8c;
+}
+
+.headerCard {
+  margin-bottom: 24px;
+}
+
+.headerIcon {
+  font-size: 24px;
+  color: #faad14;
+}
+
+.headerTitle {
+  margin: 0;
+}
+
+.statsRow {
+  margin-bottom: 24px;
+}
+
+.statCard {
+  height: 120px;
+  border: none;
+  border-radius: 12px;
+}
+
+.statCardTotal {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.statCardSent {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.statCardReceived {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.statCardFees {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.statCardBody {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.statContent {
+  text-align: center;
+  color: white;
+}
+
+.statLabel {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.statValue {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: bold;
+  line-height: 1;
+}
+
+.statValueMedium {
+  font-size: clamp(16px, 3.5vw, 24px);
+  font-weight: bold;
+  line-height: 1;
+}
+
+.statUnit {
+  font-size: clamp(12px, 2.5vw, 16px);
+  margin-left: 4px;
+  opacity: 0.8;
+}
+
+.statUnitSmall {
+  font-size: clamp(10px, 2vw, 14px);
+  margin-left: 4px;
+  opacity: 0.8;
+}
+
+.filterCard {
+  margin-bottom: 16px;
+}
+
+.listCard {
+  margin-bottom: 24px;
+}
+
+.errorAlert {
+  margin-bottom: 24px;
+}

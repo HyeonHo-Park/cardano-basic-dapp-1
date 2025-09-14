@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* 컴포넌트 스타일 Import */
+
+/* 홈페이지 스타일 */
+@import '../../pages/index.css';
+
+/* 송금 페이지 스타일 */
+@import '../../features/send/styles/SendPage.css';
+@import '../../features/send/styles/AmountInput.css';
+@import '../../features/send/styles/SendForm.css';
+
+/* 거래내역 페이지 스타일 */
+@import '../../features/history/styles/HistoryPage.css';
+@import '../../features/history/styles/TransactionCard.css';
+@import '../../features/history/styles/TransactionList.css';
+@import '../../features/history/styles/TransactionFilter.css';
+
+/* 지갑 페이지 스타일 */
+@import '../../features/wallet/styles/WalletPage.css';
+@import '../../features/wallet/styles/WalletConnect.css';
+@import '../../features/wallet/styles/WalletInfo.css';
+
+/* 공통 컴포넌트 스타일 */
+@import '../components/styles/MainLayout.css';
+@import '../components/styles/Loading.css';

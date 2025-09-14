@@ -1,0 +1,16 @@
+/* 거래 필터 스타일 */
+.filterRow {
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.countText {
+  text-align: right;
+}
+
+.countValue {
+  color: #8c8c8c;
+}

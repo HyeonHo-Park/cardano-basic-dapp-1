@@ -1,0 +1,76 @@
+/* 홈페이지 스타일 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcomeCard {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.welcomeTitle {
+  margin-bottom: 16px;
+}
+
+.welcomeText {
+  font-size: 16px;
+}
+
+.statsRow {
+  margin-bottom: 24px;
+}
+
+.actionRow {
+  margin-bottom: 24px;
+}
+
+.actionCard {
+  text-align: center;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.actionIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.actionIconWallet {
+  color: #8b5cf6;
+}
+
+.actionIconSend {
+  color: #10b981;
+}
+
+.actionIconHistory {
+  color: #faad14;
+}
+
+.actionTitle {
+  margin-bottom: 8px;
+}
+
+.actionDescription {
+  margin: 0;
+  color: #a6a6a6;
+}
+
+.statisticValuePrimary {
+  color: #8b5cf6;
+}
+
+.statisticValueSuccess {
+  color: #10b981;
+}
+
+.statisticValueWarning {
+  color: #faad14;
+}
+
+.statisticValueInfo {
+  color: #722ed1;
+}

@@ -10,7 +10,7 @@ import {
   SwapOutlined,
 } from '@ant-design/icons';
 import { useRouter } from 'next/router';
-import { Card, MainLayout } from '../components/common';
+import { Card, MainLayout } from '../shared/components';
 
 const { Title, Paragraph } = Typography;
 
@@ -23,16 +23,13 @@ export default function HomePage() {
 
   return (
     <MainLayout>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className='container'>
         {/* 환영 섹션 */}
-        <Card
-          style={{ marginBottom: '24px', textAlign: 'center' }}
-          padding='large'
-        >
-          <Title level={2} style={{ marginBottom: '16px' }}>
+        <Card className='welcomeCard' padding='large'>
+          <Title level={2} className='welcomeTitle'>
             Cardano dApp에 오신 것을 환영합니다! 🚀
           </Title>
-          <Paragraph style={{ fontSize: '16px' }}>
+          <Paragraph className='welcomeText'>
             Blockfrost API와 Lucid를 활용한 Cardano 블록체인 기반 탈중앙화
             애플리케이션입니다.
             <br />
@@ -41,7 +38,7 @@ export default function HomePage() {
         </Card>
 
         {/* 통계 카드들 */}
-        <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
+        <Row gutter={[16, 16]} className='statsRow'>
           <Col xs={24} sm={12} lg={6}>
             <Card>
               <Statistic
@@ -86,30 +83,18 @@ export default function HomePage() {
         </Row>
 
         {/* 빠른 액션 카드들 */}
-        <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
+        <Row gutter={[16, 16]} className='actionRow'>
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              style={{
-                textAlign: 'center',
-                height: '200px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
+              className='actionCard'
               onClick={() => handleCardClick('/wallet')}
             >
-              <WalletOutlined
-                style={{
-                  fontSize: '48px',
-                  color: '#8b5cf6',
-                  marginBottom: '16px',
-                }}
-              />
-              <Title level={4} style={{ marginBottom: '8px' }}>
+              <WalletOutlined className='actionIcon actionIconWallet' />
+              <Title level={4} className='actionTitle'>
                 지갑 연결
               </Title>
-              <Paragraph style={{ margin: 0, color: '#a6a6a6' }}>
+              <Paragraph className='actionDescription'>
                 Lace 카르다노 지갑을 연결하여 시작하세요
               </Paragraph>
             </Card>
@@ -118,26 +103,14 @@ export default function HomePage() {
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              style={{
-                textAlign: 'center',
-                height: '200px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
+              className='actionCard'
               onClick={() => handleCardClick('/send')}
             >
-              <SendOutlined
-                style={{
-                  fontSize: '48px',
-                  color: '#10b981',
-                  marginBottom: '16px',
-                }}
-              />
-              <Title level={4} style={{ marginBottom: '8px' }}>
+              <SendOutlined className='actionIcon actionIconSend' />
+              <Title level={4} className='actionTitle'>
                 ADA 송금
               </Title>
-              <Paragraph style={{ margin: 0, color: '#a6a6a6' }}>
+              <Paragraph className='actionDescription'>
                 다른 카르다노 주소로 ADA를 안전하게 송금하세요
               </Paragraph>
             </Card>
@@ -146,26 +119,14 @@ export default function HomePage() {
           <Col xs={24} md={8}>
             <Card
               variant='interactive'
-              style={{
-                textAlign: 'center',
-                height: '200px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
+              className='actionCard'
               onClick={() => handleCardClick('/history')}
             >
-              <HistoryOutlined
-                style={{
-                  fontSize: '48px',
-                  color: '#faad14',
-                  marginBottom: '16px',
-                }}
-              />
-              <Title level={4} style={{ marginBottom: '8px' }}>
+              <HistoryOutlined className='actionIcon actionIconHistory' />
+              <Title level={4} className='actionTitle'>
                 거래 내역
               </Title>
-              <Paragraph style={{ margin: 0, color: '#a6a6a6' }}>
+              <Paragraph className='actionDescription'>
                 과거 모든 거래 내역을 확인하고 추적하세요
               </Paragraph>
             </Card>

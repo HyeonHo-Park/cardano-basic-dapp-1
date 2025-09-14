@@ -1,0 +1,22 @@
+/* 지갑 페이지 스타일 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.connectSection {
+  margin-bottom: 24px;
+}
+
+.walletSection {
+  margin-bottom: 24px;
+}
+
+.balanceCard {
+  margin-bottom: 24px;
+}

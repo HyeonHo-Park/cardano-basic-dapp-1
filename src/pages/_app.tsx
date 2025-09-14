@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ConfigProvider, theme, App } from 'antd';
-import '../styles/globals.css';
+import '../shared/styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
