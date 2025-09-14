@@ -41,3 +41,22 @@ src/
 NEXT_PUBLIC_BLOCKFROST_PROJECT_ID=previewxxxxxxxxxx
 NEXT_PUBLIC_NETWORK=Preview
 ```
+
+### Pre Install
+
+```shell
+# Node.js 16.x 이상 필요 (24.5.0 사용함)
+node --version
+
+# pnpm 설치 (없는 경우)
+npm install -g pnpm
+
+# 의존성 설치
+pnpm install
+```
+
+### Run Application
+
+```shell
+pnpm dev
+```
