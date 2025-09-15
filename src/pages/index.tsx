@@ -1,13 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Row, Col, Statistic, Typography } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import {
   WalletOutlined,
   SendOutlined,
   HistoryOutlined,
-  DollarOutlined,
-  SwapOutlined,
 } from '@ant-design/icons';
 import { useRouter } from 'next/router';
 import { Card, MainLayout } from '../shared/components';
@@ -36,51 +34,6 @@ export default function HomePage() {
             지갑을 연결하고 ADA 송금, 거래 내역 조회 등의 기능을 체험해보세요.
           </Paragraph>
         </Card>
-
-        {/* 통계 카드들 */}
-        <Row gutter={[16, 16]} className='home-statsRow'>
-          <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic
-                title='연결된 지갑'
-                value={0}
-                prefix={<WalletOutlined />}
-                className='home-statisticValuePrimary'
-              />
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic
-                title='ADA 잔액'
-                value={0}
-                precision={2}
-                prefix={<DollarOutlined />}
-                suffix='ADA'
-                className='home-statisticValueSuccess'
-              />
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic
-                title='총 거래'
-                value={0}
-                prefix={<SwapOutlined />}
-                className='home-statisticValueWarning'
-              />
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic
-                title='네트워크'
-                value='Preview'
-                className='home-statisticValueInfo'
-              />
-            </Card>
-          </Col>
-        </Row>
 
         {/* 빠른 액션 카드들 */}
         <Row gutter={[16, 16]} className='home-actionRow'>
